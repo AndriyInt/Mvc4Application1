@@ -14,6 +14,7 @@ namespace Mvc4Application1
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("elmah.axd");
 
             routes.MapRoute(
                 name: "Books",

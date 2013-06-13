@@ -72,6 +72,9 @@
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Math, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -346,6 +349,7 @@
       <DependentUpon>SiteDBModel.edmx</DependentUpon>
       <LastGenOutput>SiteDBModel.cs</LastGenOutput>
     </Content>
+    <Content Include="log4net.config" />
     <None Include="Properties\PublishProfiles\mvc4app1FileSystem.pubxml" />
     <None Include="Scripts\jquery-1.8.3.intellisense.js" />
     <Content Include="Images\Products\microsoft_keyboard_nek4000_large.jpg" />
