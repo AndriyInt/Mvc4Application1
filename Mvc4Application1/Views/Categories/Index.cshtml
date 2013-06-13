@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Mvc4Application1.DAL.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Category1.Name)*@
+            @Mvc4Application1.LResources.Categories.Index.ParentCategory
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category1.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @if (ViewBag.PageNo - 1 >= 0)
+    {
+        @Html.ActionLink("<", "Index", new { startFrom = (ViewBag.PageNo - 1) * ViewBag.CategoriesPerPage, categoriesPerPage = ViewBag.CategoriesPerPage })
+    }
+
+    Page @ViewBag.PageNo of @ViewBag.PagesCount
+
+    @if (ViewBag.PageNo + 1 <= ViewBag.PagesCount)
+    {
+        @Html.ActionLink(">", "Index", new { startFrom = (ViewBag.PageNo + 1) * ViewBag.CategoriesPerPage, categoriesPerPage = ViewBag.CategoriesPerPage })
+    }
+</p>

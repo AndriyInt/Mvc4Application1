@@ -1,0 +1,29 @@
+﻿@Html.ActionLink(
+    "English (British)", 
+    HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(), 
+    new
+        {
+            controller=HttpContext.Current.Request.RequestContext.RouteData.Values["controller"] as string, 
+            id = HttpContext.Current.Request.RequestContext.RouteData.Values["id"] as string,
+            culture = "en-GB"
+        })
+
+@Html.ActionLink(
+    "English (US)", 
+    HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(), 
+    new
+        {
+            controller=HttpContext.Current.Request.RequestContext.RouteData.Values["controller"] as string,
+            id = HttpContext.Current.Request.RequestContext.RouteData.Values["id"] as string,
+            culture = "en-US"
+        })
+
+@Html.ActionLink(
+    "Ukrainian", 
+    HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(), 
+    new
+        {
+            controller=HttpContext.Current.Request.RequestContext.RouteData.Values["controller"] as string,
+            id = HttpContext.Current.Request.RequestContext.RouteData.Values["id"] as string,
+            culture = "uk-UA"
+        })

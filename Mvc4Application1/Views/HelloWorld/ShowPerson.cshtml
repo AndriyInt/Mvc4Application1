@@ -1,0 +1,93 @@
+﻿@model Mvc4Application1.DAL.Person
+
+@{
+    ViewBag.Title = "ShowPerson";
+
+    var currentCultureStr = System.Threading.Thread.CurrentThread.CurrentCulture.ToString();
+    //var currentUICulture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+    string globalizeCulturePath = Url.Content(string.Format("~/Scripts/jquery.globalize/cultures/globalize.culture.{0}.js", currentCultureStr));
+}
+
+<article>
+    <p>
+        CurrentCulture: @System.Threading.Thread.CurrentThread.CurrentCulture
+    </p>
+
+    <p>
+        CurrentUICulture: @System.Threading.Thread.CurrentThread.CurrentUICulture
+    </p>
+</article>
+
+<h2>ShowPerson</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Person</legend>
+
+        @Html.HiddenFor(model => model.PersonId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BirthDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BirthDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BirthDate)
+            @Html.ValidationMessageFor(model => model.BirthDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MonthlyExpenses)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.MonthlyExpenses)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MonthlyExpenses)
+            @Html.ValidationMessageFor(model => model.MonthlyExpenses)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script src="~/Scripts/jquery.globalize/globalize.js"></script>
+    @*<script src="~/Scripts/jquery.globalize/cultures/globalize.culture.uk-UA.js"></script>*@
+    <script src="@globalizeCulturePath"></script>
+
+    <script>
+        $.validator.methods.number = function(value, element) {
+            return this.optional(element) ||
+                !isNaN(Globalize.parseFloat(value));
+        };
+        $(document).ready(function () {
+            //Globalize.culture('uk-UA');
+            Globalize.culture(@currentCultureStr);
+        });
+    </script>
+    <script>
+        jQuery.extend(jQuery.validator.methods, {
+            range: function (value, element, param) {
+                //Use the Globalization plugin to parse the value        
+                var val = $.global.parseFloat(value);
+                return this.optional(element) || (
+                    val >= param[0] && val <= param[1]);
+            }
+        });
+
+    </script>
+}

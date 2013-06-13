@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Hello World!";
+    ViewBag.Message = "Hello from HelloWorld Web application";
+}
+
+<h2>Index</h2>
+<p>Hello from HelloWorld Web application!</p>
+
+<nav>
+    <ul>
+        <li>@Html.ActionLink("Categories", "ShowCategories")</li>
+        <li>@Html.ActionLink("Other", "Other")</li>
+        <li>@Html.ActionLink("Other2", "Other2")</li>
+        <li>@Html.ActionLink("ShowPerson", "ShowPerson")</li>
+        <li>@Html.ActionLink("Welcome", "Welcome")</li>
+    </ul>
+</nav>
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                featured
+            </p>
+        </div>
+    </section>
+}

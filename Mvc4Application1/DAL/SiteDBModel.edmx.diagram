@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8dbad4c0de2e4144a5613174076a9fab" Name="Diagram1">
+        <EntityTypeShape EntityType="Mvc4Application1DBModel.Category" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mvc4Application1DBModel.Product" Width="1.5" PointX="3.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Mvc4Application1DBModel.FK_Categories_ParentCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Mvc4Application1DBModel.ProductCategoryMapping" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

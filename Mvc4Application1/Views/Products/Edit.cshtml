@@ -1,0 +1,100 @@
+﻿@model Mvc4Application1.DAL.Product
+
+@{
+    ViewBag.Title = "Edit";
+    var currentCultureStr = System.Threading.Thread.CurrentThread.CurrentCulture.ToString();
+    string globalizeCulturePath = Url.Content(string.Format("~/Scripts/jquery.globalize/cultures/globalize.culture.{0}.js", currentCultureStr));
+}
+
+<h2>Edit</h2>
+
+<div class="message-error">@ViewBag.Error</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+
+        @Html.HiddenFor(model => model.ProductId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageUrl)
+            @Html.ValidationMessageFor(model => model.ImageUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsFeatured)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsFeatured)
+            @Html.ValidationMessageFor(model => model.IsFeatured)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsPublished)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsPublished)
+            @Html.ValidationMessageFor(model => model.IsPublished)
+        </div>
+        
+        <div class="editor-label">
+            Categories
+        </div>
+        <div class="editor-field">
+            <span class="categories-editor"></span>
+            <input id="add-category" type="button" value="Add category" />
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+@Html.DropDownList("categoriesSelectTemplate")
+
+<span id="old-categories" style="display: none">@ViewBag.CategoriesIds</span>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/jquery.fix-validate.js"></script>
+    @*<script src="~/Scripts/jquery.globalize/globalize.js"></script>
+    <script src="@globalizeCulturePath"></script>*@
+
+    <script src="~/Scripts/productEdit.categoriesSelect.js"></script>
+}

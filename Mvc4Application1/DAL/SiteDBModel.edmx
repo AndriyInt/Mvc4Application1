@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Mvc4Application1DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Mvc4Application1DBModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Mvc4Application1DBModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductCategoryMapping" EntityType="Mvc4Application1DBModel.Store.ProductCategoryMapping" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Products" EntityType="Mvc4Application1DBModel.Store.Products" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Categories_ParentCategory" Association="Mvc4Application1DBModel.Store.FK_Categories_ParentCategory">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Categories1" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryMapping_Categories" Association="Mvc4Application1DBModel.Store.FK_ProductCategoryMapping_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="ProductCategoryMapping" EntitySet="ProductCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryMapping_Products" Association="Mvc4Application1DBModel.Store.FK_ProductCategoryMapping_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductCategoryMapping" EntitySet="ProductCategoryMapping" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductCategoryMapping">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="IsFeatured" Type="bit" Nullable="false" />
+          <Property Name="IsPublished" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Categories_ParentCategory">
+          <End Role="Categories" Type="Mvc4Application1DBModel.Store.Categories" Multiplicity="0..1" />
+          <End Role="Categories1" Type="Mvc4Application1DBModel.Store.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Categories1">
+              <PropertyRef Name="ParentCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategoryMapping_Categories">
+          <End Role="Categories" Type="Mvc4Application1DBModel.Store.Categories" Multiplicity="1" />
+          <End Role="ProductCategoryMapping" Type="Mvc4Application1DBModel.Store.ProductCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ProductCategoryMapping">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategoryMapping_Products">
+          <End Role="Products" Type="Mvc4Application1DBModel.Store.Products" Multiplicity="1" />
+          <End Role="ProductCategoryMapping" Type="Mvc4Application1DBModel.Store.ProductCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductCategoryMapping">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Mvc4Application1DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Mvc4Application1DBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Mvc4Application1DBModel.Category" />
+          <EntitySet Name="Products" EntityType="Mvc4Application1DBModel.Product" />
+          <AssociationSet Name="FK_Categories_ParentCategory" Association="Mvc4Application1DBModel.FK_Categories_ParentCategory">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Categories1" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="ProductCategoryMapping" Association="Mvc4Application1DBModel.ProductCategoryMapping">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ParentCategoryId" Type="Int32" />
+          <NavigationProperty Name="Categories1" Relationship="Mvc4Application1DBModel.FK_Categories_ParentCategory" FromRole="Categories" ToRole="Categories1" />
+          <NavigationProperty Name="Category1" Relationship="Mvc4Application1DBModel.FK_Categories_ParentCategory" FromRole="Categories1" ToRole="Categories" />
+          <NavigationProperty Name="Products" Relationship="Mvc4Application1DBModel.ProductCategoryMapping" FromRole="Categories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="IsFeatured" Type="Boolean" Nullable="false" />
+          <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Categories" Relationship="Mvc4Application1DBModel.ProductCategoryMapping" FromRole="Products" ToRole="Categories" />
+        </EntityType>
+        <Association Name="FK_Categories_ParentCategory">
+          <End Role="Categories" Type="Mvc4Application1DBModel.Category" Multiplicity="0..1" />
+          <End Role="Categories1" Type="Mvc4Application1DBModel.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Categories1">
+              <PropertyRef Name="ParentCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductCategoryMapping">
+          <End Role="Categories" Type="Mvc4Application1DBModel.Category" Multiplicity="*" />
+          <End Role="Products" Type="Mvc4Application1DBModel.Product" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Mvc4Application1DBModelStoreContainer" CdmEntityContainer="Mvc4Application1DBEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Mvc4Application1DBModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Mvc4Application1DBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProductCategoryMapping" TypeName="Mvc4Application1DBModel.ProductCategoryMapping" StoreEntitySet="ProductCategoryMapping">
+            <EndProperty Name="Categories">
+              <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            </EndProperty>
+            <EndProperty Name="Products">
+              <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
