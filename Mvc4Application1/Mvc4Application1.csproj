@@ -256,10 +256,6 @@
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Mvc4Application1DB.mdf" />
-    <Content Include="App_Data\Mvc4Application1DB_log.ldf">
-      <DependentUpon>Mvc4Application1DB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\Other.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -791,6 +787,7 @@
     <Content Include="Views\Products\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Forum\Models\" />
   </ItemGroup>
   <ItemGroup>
