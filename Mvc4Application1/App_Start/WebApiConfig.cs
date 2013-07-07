@@ -13,6 +13,11 @@
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });
+
+            foreach (var route in config.Routes)
+            {
+                var x = route.RouteTemplate;
+            }
         }
     }
 }

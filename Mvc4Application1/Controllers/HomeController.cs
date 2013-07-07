@@ -39,5 +39,12 @@
 
             return this.View();
         }
+
+        public ActionResult Other()
+        {
+            ViewBag.Message = "Other stuff";
+
+            return this.View();
+        }
     }
 }

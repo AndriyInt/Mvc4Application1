@@ -1,11 +1,11 @@
-﻿namespace Mvc4Application1
-{
-    using System.Globalization;
-    using System.Threading;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
+﻿using System.Globalization;
+using System.Threading;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
+namespace Mvc4Application1.RouteHandlers
+{
     public class MultiCultureMvcRouteHandler : MvcRouteHandler
     {
         protected override IHttpHandler GetHttpHandler(RequestContext requestContext)

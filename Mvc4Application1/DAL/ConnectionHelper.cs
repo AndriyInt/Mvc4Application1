@@ -2,7 +2,7 @@
 {
     public class ConnectionHelper
     {
-        public static readonly string SiteDBModelConnectionString;
+        public static string SiteDBModelConnectionString { get; private set; }
 
         static ConnectionHelper()
         {

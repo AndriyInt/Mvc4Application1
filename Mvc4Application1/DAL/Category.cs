@@ -14,12 +14,6 @@ namespace Mvc4Application1.DAL
     
     public partial class Category
     {
-        public Category()
-        {
-            this.Categories1 = new HashSet<Category>();
-            this.Products = new HashSet<Product>();
-        }
-    
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -28,5 +22,11 @@ namespace Mvc4Application1.DAL
         public virtual ICollection<Category> Categories1 { get; set; }
         public virtual Category Category1 { get; set; }
         public virtual ICollection<Product> Products { get; set; }
+
+        public Category()
+        {
+            this.Categories1 = new HashSet<Category>();
+            this.Products = new HashSet<Product>();
+        }
     }
 }

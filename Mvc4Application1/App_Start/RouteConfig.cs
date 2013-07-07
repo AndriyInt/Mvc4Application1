@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Mvc4Application1.RouteHandlers;
 
 namespace Mvc4Application1
 {
     public class RouteConfig
     {
-        public static readonly string[] Cultures = new[] { "en-GB", "en-US", "uk-UA" };
+        public static readonly string[] Cultures = new[] { "en-US", "en-GB", "uk-UA" };
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -30,35 +31,45 @@ namespace Mvc4Application1
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "Mvc4Application1.Controllers" });
-
-            // add cultures for site as well as areas
-            foreach (Route r in routes)
-            {
-                if (!(r.RouteHandler is SingleCultureMvcRouteHandler))
+                url: "{culture}/{controller}/{action}/{id}",
+                defaults: new
                 {
-                    r.RouteHandler = new MultiCultureMvcRouteHandler();
-                    r.Url = "{culture}/" + r.Url;
+                    culture = Cultures[0],
+                    controller = "Home", 
+                    action = "Index", id = UrlParameter.Optional
+                },
+                namespaces: new[] { "Mvc4Application1.Controllers" },
+                constraints: new RouteValueDictionary {{"culture", new CultureConstraint(Cultures)}})
+                .RouteHandler = new MultiCultureMvcRouteHandler();
+            
 
-                    // Adding default culture 
-                    if (r.Defaults == null)
-                    {
-                        r.Defaults = new RouteValueDictionary();
-                    }
+            // Add cultures for site as well as areas
+            // adds routes where not appropriate
+            ////foreach (Route r in routes)
+            ////{
+            ////    if (!(r.RouteHandler is SingleCultureMvcRouteHandler) 
+            ////        && !r.Url.StartsWith("api/"))
+            ////    {
+            ////        r.RouteHandler = new MultiCultureMvcRouteHandler();
+            ////        r.Url = "{culture}/" + r.Url;
 
-                    r.Defaults.Add("culture", Cultures[0]);
+            ////        // Adding default culture 
+            ////        if (r.Defaults == null)
+            ////        {
+            ////            r.Defaults = new RouteValueDictionary();
+            ////        }
 
-                    // Adding constraint for culture param
-                    if (r.Constraints == null)
-                    {
-                        r.Constraints = new RouteValueDictionary();
-                    }
+            ////        r.Defaults.Add("culture", Cultures[0]);
 
-                    r.Constraints.Add("culture", new CultureConstraint(Cultures));
-                }
-            }
+            ////        // Adding constraint for culture param
+            ////        if (r.Constraints == null)
+            ////        {
+            ////            r.Constraints = new RouteValueDictionary();
+            ////        }
+
+            ////        r.Constraints.Add("culture", new CultureConstraint(Cultures));
+            ////    }
+            ////}
         }
 
         public class CultureConstraint : IRouteConstraint

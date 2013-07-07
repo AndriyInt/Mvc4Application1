@@ -1,7 +1,7 @@
-﻿namespace Mvc4Application1
-{
-    using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
+namespace Mvc4Application1.RouteHandlers
+{
     public class SingleCultureMvcRouteHandler : MvcRouteHandler
     {
     }
