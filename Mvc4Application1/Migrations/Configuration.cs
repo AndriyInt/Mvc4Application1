@@ -11,7 +11,7 @@ namespace Mvc4Application1.Migrations
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Mvc4Application1.Models.MovieDBContext context)
