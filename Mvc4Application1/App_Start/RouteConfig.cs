@@ -39,7 +39,7 @@ namespace Mvc4Application1
                     action = "Index", id = UrlParameter.Optional
                 },
                 namespaces: new[] { "Mvc4Application1.Controllers" },
-                constraints: new RouteValueDictionary {{"culture", new CultureConstraint(Cultures)}})
+                constraints: new RouteValueDictionary { { "culture", new CultureConstraint(Cultures) } })
                 .RouteHandler = new MultiCultureMvcRouteHandler();
             
 
