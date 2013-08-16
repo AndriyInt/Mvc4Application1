@@ -201,6 +201,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KnockoutTestsController.cs" />
     <Compile Include="Controllers\MovieApiController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -230,6 +231,7 @@
       <DependentUpon>SiteDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\Log4NetExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -841,6 +843,8 @@
     <Content Include="Views\ShopCategory\Create.cshtml" />
     <Content Include="Views\ShopCategory\Edit.cshtml" />
     <Content Include="Views\ShopCategory\Delete.cshtml" />
+    <Content Include="Views\KnockoutTests\Index.cshtml" />
+    <Content Include="Views\KnockoutTests\Step2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

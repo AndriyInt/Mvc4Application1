@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Step2";
+}
+
+<h2>Step2</h2>
+
+<noscript>Please eneble javascript</noscript>
+<script src="/Scripts/knockout-2.1.0.js" type="text/javascript"></script>
+
+<p>First Name:
+    <span type="text" data-bind="text: firstName"></span>
+</p>
+<p>First Name edit:
+    <input type="text" data-bind="value: firstName"/>
+</p>
+
+<p>Last Name:
+    <span type="text" data-bind="text: lastName"></span>
+</p>
+<p>Last Name edit:
+    <input type="text" data-bind="value: lastName"/>
+</p>
+
+<p>Full Name:
+    <span type="text" data-bind="text: fullName"></span>
+</p>
+
+<h2>Friends</h2>
+<div data-bind="template: 'friendsTemplate'"></div>
+
+<!--Le jQuery template-->
+<script id="friendsTemplate" type="text/html">
+    <ul>
+        {{each(index, friend) friends}}
+            <li>${friend.name}</li>
+        {{/each}}
+    </ul>
+</script>
+
+<script type="text/javascript">
+    function friend(name) {
+        return {
+            name: ko.observable(name)
+        };
+    }
+
+    var viewModel = {
+        firstName: "Andre", // don't react on changes in input
+        lastName: ko.observable("Smith"), // does react on changes in input
+        friends: ko.observableArray([friend("Jeff"), friend("Martha")])
+    };
+
+    viewModel.fullName = ko.dependentObservable(function () {
+        return this.firstName + " " + this.lastName();
+    }, viewModel);
+
+    ko.applyBindings(viewModel);
+</script>

@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<noscript>Please eneble javascript</noscript>
+<script src="/Scripts/knockout-2.1.0.js" type="text/javascript"></script>
+
+<h2>Index</h2>
+
+<p>First Name:
+    <span type="text" data-bind="text: firstName"></span>
+</p>
+<p>First Name edit:
+    <input type="text" data-bind="value: firstName"/>
+</p>
+
+<p>Last Name:
+    <span type="text" data-bind="text: lastName"></span>
+</p>
+<p>Last Name edit:
+    <input type="text" data-bind="value: lastName"/>
+</p>
+
+<p>Full Name:
+    <span type="text" data-bind="text: fullName"></span>
+</p>
+
+<script type="text/javascript">
+    var viewModel = {
+        firstName: "Andre", // don't react on changes in input
+        lastName: ko.observable("Smith") // does react on changes in input
+    };
+
+    viewModel.fullName = ko.dependentObservable(function() {
+        return this.firstName + " " + this.lastName();
+    }, viewModel);
+
+    ko.applyBindings(viewModel);
+</script>
