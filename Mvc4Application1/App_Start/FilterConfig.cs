@@ -8,7 +8,6 @@
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new Filters.Log4NetExceptionFilter());
-            filters.Add(new HandleErrorAttribute());
         }
     }
 }

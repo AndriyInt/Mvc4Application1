@@ -199,6 +199,7 @@
     <Compile Include="Consts.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KnockoutTestsController.cs" />
@@ -232,6 +233,7 @@
     </Compile>
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\Log4NetExceptionFilter.cs" />
+    <Compile Include="Filters\MyHandleErrorAttributecs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -845,6 +847,10 @@
     <Content Include="Views\ShopCategory\Delete.cshtml" />
     <Content Include="Views\KnockoutTests\Index.cshtml" />
     <Content Include="Views\KnockoutTests\Step2.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Error\InternalServer.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
