@@ -1,6 +1,4 @@
-﻿using log4net;
-
-namespace Mvc4Application1
+﻿namespace Mvc4Application1
 {
     using System;
     using System.Collections.Generic;
@@ -11,11 +9,13 @@ namespace Mvc4Application1
     using System.Web.Optimization;
     using System.Web.Routing;
 
+    using log4net;
+
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (MvcApplication));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(MvcApplication));
 
         protected void Application_Start()
         {
