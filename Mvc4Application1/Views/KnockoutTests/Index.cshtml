@@ -3,7 +3,6 @@
 }
 
 <noscript>Please eneble javascript</noscript>
-<script src="/Scripts/knockout-2.1.0.js" type="text/javascript"></script>
 
 <h2>Index</h2>
 
@@ -25,15 +24,23 @@
     <span type="text" data-bind="text: fullName"></span>
 </p>
 
-<script type="text/javascript">
-    var viewModel = {
-        firstName: "Andre", // don't react on changes in input
-        lastName: ko.observable("Smith") // does react on changes in input
-    };
+@section scripts
+{
+    @Scripts.Render("~/bundles/knockout")
+    <script type="text/javascript">
+        (function() {
+            var viewModel = {
+                firstName: "Andre", // don't react on changes in input
+                lastName: ko.observable("Smith") // does react on changes in input
+            };
 
-    viewModel.fullName = ko.dependentObservable(function() {
-        return this.firstName + " " + this.lastName();
-    }, viewModel);
+            viewModel.fullName = ko.dependentObservable(function() {
+                return this.firstName + " " + this.lastName();
+            }, viewModel);
 
-    ko.applyBindings(viewModel);
-</script>
+            ko.applyBindings(viewModel);
+        })();
+    </script>
+}
+
+
