@@ -26,6 +26,17 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            // Role init in Application_Start
+            try
+            {
+                new Filters.InitializeSimpleMembershipAttribute().OnActionExecuting(null);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Role init in Application_Start", ex);
+            }
+            
         }
 
         /// <summary>
