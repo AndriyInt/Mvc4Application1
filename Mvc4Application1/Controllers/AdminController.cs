@@ -14,6 +14,7 @@ namespace Mvc4Application1.Controllers
         //
         // GET: /Admin/
 
+        [Authorize(Roles = "Admin, Super User")]
         public ActionResult Index()
         {
             var informationalVersionAttribute =
@@ -23,5 +24,10 @@ namespace Mvc4Application1.Controllers
             return this.View();
         }
 
+        [Authorize(Roles = "Admin, Super User")]
+        public void DownloadLog()
+        {
+            this.Response.WriteFile(Server.MapPath("~/Logs/2013.09.07.log.resources"));
+        }
     }
 }
