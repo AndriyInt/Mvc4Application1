@@ -1,0 +1,46 @@
+﻿@model Mvc4Application1.DirectoryListing.DirectoryListing
+
+@{
+    ViewBag.Title = "Logs";
+}
+
+<h2>Logs</h2>
+
+@{ int idx = 1; }
+Path: @Model.Path
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @if (Model.ParentDirPath != null)
+            {
+                <td></td>
+                <td>@Html.ActionLink(".. (Up)", "ShowLogs",  new {path = Model.ParentDirPath})</td>
+                <td></td>
+            }
+        
+        </tr>
+        @foreach (var dirName in Model.Subirectories)
+        {
+            <tr>
+                <td>Dir</td>
+                <td>@Html.ActionLink(dirName, "ShowLogs", new { path = (!string.IsNullOrEmpty(Model.Path) ? Model.Path + "/" : string.Empty) + dirName } )</td>
+                <td></td>
+            </tr>
+        }
+        @foreach (var fileName in Model.Files)
+        {
+            <tr>
+                <td></td>
+                <td>@Html.ActionLink(fileName, "DownloadFile", new {relFname = fileName})</td>
+                <td>@Html.ActionLink("Download", "DownloadFile", new {relFname = fileName})</td>
+            </tr>
+        }
+    </tbody>
+</table>

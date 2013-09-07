@@ -232,6 +232,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteDBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DirectoryListing\DirectoryListing.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\Log4NetExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -852,6 +853,7 @@
     <Content Include="Views\Error\InternalServer.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ShowLogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
