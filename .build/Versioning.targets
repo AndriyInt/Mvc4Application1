@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath Condition="'$(MSBuildCommunityTasksPath)' == ''">$(MSBuildProjectDirectory)\..\.build</MSBuildCommunityTasksPath>
+    <BuildDependsOn>UpdateAssemblyInfo;$(BuildDependsOn);</BuildDependsOn>
+	</PropertyGroup>
+  
+  <Import Project="..\.build\MSBuild.Community.Tasks.Targets" />
+
+  <!--<Target Name="BeforeBuild">
+    <CallTarget Targets="UpdateAssemblyInfo" />
+  </Target>-->
+
+  <Target Name="CreateAssemblyInfo">
+    <GitVersion LocalPath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="CommitHash" PropertyName="Revision" />
+    </GitVersion>
+    <AssemblyInfo
+        CodeLanguage="CS"
+        OutputFile="Properties\AssemblyInfo.cs"
+        AssemblyTitle="YourAssmblyName"
+        AssemblyDescription="Description"
+        AssemblyCompany=""
+        AssemblyProduct="Productname"
+        AssemblyCopyright="Copyright"
+        ComVisible="false"
+        CLSCompliant="true"
+        AssemblyInformationalVersion="$(Major).$(Minor).$(Build).$(Revision)"
+        AssemblyVersion="$(Major).$(Minor).$(Build)"
+        AssemblyFileVersion="$(Major).$(Minor).$(Build)" />
+  </Target>
+
+  <Target Name="UpdateAssemblyInfo">
+    <GitVersion LocalPath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="CommitHash" PropertyName="Revision" />
+    </GitVersion>
+    <FileUpdate Files="Properties\AssemblyInfo.cs"
+          Regex="(AssemblyInformationalVersion\(&quot;\d+)\.(\d+)\.(\d+)\.(\d+)"
+          ReplacementText="$1.$2.$3.$(Revision)" />
+  </Target>
+
+</Project>
