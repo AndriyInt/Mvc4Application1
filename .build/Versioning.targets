@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <MSBuildCommunityTasksPath Condition="'$(MSBuildCommunityTasksPath)' == ''">$(MSBuildProjectDirectory)\..\.build</MSBuildCommunityTasksPath>
-    <BuildDependsOn>UpdateAssemblyInfo;$(BuildDependsOn);</BuildDependsOn>
+    <BuildDependsOn Condition="'$(Configuration)' == 'Release'">UpdateAssemblyInfo;$(BuildDependsOn);</BuildDependsOn>
 	</PropertyGroup>
   
   <Import Project="..\.build\MSBuild.Community.Tasks.Targets" />
@@ -12,7 +12,7 @@
     <CallTarget Targets="UpdateAssemblyInfo" />
   </Target>-->
 
-  <Target Name="CreateAssemblyInfo">
+  <!--<Target Name="CreateAssemblyInfo">
     <GitVersion LocalPath="$(MSBuildProjectDirectory)">
       <Output TaskParameter="CommitHash" PropertyName="Revision" />
     </GitVersion>
@@ -29,7 +29,7 @@
         AssemblyInformationalVersion="$(Major).$(Minor).$(Build).$(Revision)"
         AssemblyVersion="$(Major).$(Minor).$(Build)"
         AssemblyFileVersion="$(Major).$(Minor).$(Build)" />
-  </Target>
+  </Target>-->
 
   <Target Name="UpdateAssemblyInfo">
     <GitVersion LocalPath="$(MSBuildProjectDirectory)">
