@@ -33,7 +33,9 @@
                             <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
                             <li>@Html.ActionLink("HelloWorld", "Index", "HelloWorld")</li>
                             <li>@Html.ActionLink("Other", "Other", "Home")</li>
-                            <li><a href="/Help">Help area</a></li>
+                            
+                            <li>@Html.ActionLink("Forum area", "Index", "Home", new { Area = "Forum" }, new{})</li>
+                            <li>@Html.ActionLink("Help(API) area", "Index", "Help", new { Area = "HelpPage" }, new{})</li>
                         </ul>
                     </nav>
                 </div>
