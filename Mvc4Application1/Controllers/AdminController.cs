@@ -8,6 +8,8 @@
     using System.Web;
     using System.Web.Mvc;
 
+    using Mvc4Application1.Models;
+
     public class AdminController : Controller
     {
         private const string LogDir = "~/Logs/";
@@ -39,7 +41,7 @@
             var subdirs = System.IO.Directory.EnumerateDirectories(fullPath).Select(fname => fname.Substring(fullPathLength));
             var files = System.IO.Directory.EnumerateFiles(fullPath).Select(fname => fname.Substring(fullPathLength));
 
-            return this.View(new DirectoryListing.DirectoryListing
+            return this.View(new DirectoryListing
                                  {
                                      Path = path,
                                      FriendlyPath = path != null ? path + "/" : string.Empty,

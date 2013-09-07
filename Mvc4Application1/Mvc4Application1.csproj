@@ -232,7 +232,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DirectoryListing\DirectoryListing.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\Log4NetExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -275,6 +274,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DirectoryListing.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieDBContext.cs" />
     <Compile Include="RouteHandlers\MultiCultureMvcRouteHandler.cs" />

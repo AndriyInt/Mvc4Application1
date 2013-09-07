@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Mvc4Application1.DirectoryListing
+﻿namespace Mvc4Application1.Models
 {
+    using System.Collections.Generic;
+
     public class DirectoryListing
     {
         public string Path { get; set; }
