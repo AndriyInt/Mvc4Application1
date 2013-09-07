@@ -9,6 +9,8 @@ namespace Mvc4Application1.DirectoryListing
     {
         public string Path { get; set; }
 
+        public string FriendlyPath { get; set; }
+
         public string ParentDirPath { get; set; }
 
         public IEnumerable<string> Subirectories { get; set; }

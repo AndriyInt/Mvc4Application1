@@ -42,6 +42,7 @@
             return this.View(new DirectoryListing.DirectoryListing
                                  {
                                      Path = path,
+                                     FriendlyPath = path != null ? path + "/" : string.Empty,
                                      ParentDirPath = parentDirPath,
                                      Subirectories = subdirs,
                                      Files = files

@@ -30,7 +30,7 @@ Path: @Model.Path
         {
             <tr>
                 <td>Dir</td>
-                <td>@Html.ActionLink(dirName, "ShowLogs", new { path = (!string.IsNullOrEmpty(Model.Path) ? Model.Path + "/" : string.Empty) + dirName } )</td>
+                <td>@Html.ActionLink(dirName, "ShowLogs", new { path = Model.FriendlyPath + dirName } )</td>
                 <td></td>
             </tr>
         }
@@ -38,8 +38,8 @@ Path: @Model.Path
         {
             <tr>
                 <td></td>
-                <td>@Html.ActionLink(fileName, "DownloadFile", new {relFname = fileName})</td>
-                <td>@Html.ActionLink("Download", "DownloadFile", new {relFname = fileName})</td>
+                <td>@Html.ActionLink(fileName, "DownloadFile", new {relFname = Model.FriendlyPath + fileName})</td>
+                <td>@Html.ActionLink("Download", "DownloadFile", new {relFname = Model.FriendlyPath + fileName})</td>
             </tr>
         }
     </tbody>
