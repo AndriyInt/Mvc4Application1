@@ -51,12 +51,6 @@
                                  });
         }
 
-        [Authorize(Roles = "Admin, Super User")]
-        public void DownloadLog()
-        {
-            this.Response.WriteFile(Server.MapPath("~/Logs/2013.09.07.log.resources"));
-        }
-        
         /// <summary>
         /// Downloads file
         /// </summary>
