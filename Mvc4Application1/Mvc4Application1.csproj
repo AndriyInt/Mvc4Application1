@@ -209,6 +209,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShopCategoryController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\ShopProductController.cs" />
     <Compile Include="DAL\Category.cs">
       <DependentUpon>SiteDBModel.tt</DependentUpon>
     </Compile>
@@ -854,6 +855,11 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\ShowLogs.cshtml" />
+    <Content Include="Views\ShopProduct\Index.cshtml" />
+    <Content Include="Views\ShopProduct\Details.cshtml" />
+    <Content Include="Views\ShopProduct\Create.cshtml" />
+    <Content Include="Views\ShopProduct\Edit.cshtml" />
+    <Content Include="Views\ShopProduct\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,57 @@
+﻿@model Mvc4Application1.Models.ShopProduct
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ShopProduct</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+        Image
+    </div>
+    <div class="display-field">
+        <img class="thumbnail" alt="no image" src="@(string.IsNullOrEmpty(Model.ImageUrl) ? string.Empty : Url.Content(Model.ImageUrl))" />
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsFeatured)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsFeatured)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsPublished)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsPublished)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
