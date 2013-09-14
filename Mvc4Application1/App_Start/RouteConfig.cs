@@ -1,5 +1,6 @@
 ﻿namespace Andriy.Mvc4Application1.App_Start
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -9,8 +10,6 @@
 
     public class RouteConfig
     {
-        public static readonly string[] Cultures = new[] { "en-US", "en-GB", "uk-UA" };
-
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -33,12 +32,12 @@
                 url: "{culture}/{controller}/{action}/{id}",
                 defaults: new
                 {
-                    culture = Cultures[0],
+                    culture = Localization.Culture.Cultures.First().Key,
                     controller = "Home", 
                     action = "Index", id = UrlParameter.Optional
                 },
                 namespaces: new[] { "Andriy.Mvc4Application1.Controllers" },
-                constraints: new RouteValueDictionary { { "culture", new CultureConstraint(Cultures) } })
+                constraints: new RouteValueDictionary { { "culture", new CultureConstraint(Localization.Culture.Cultures.Select(c => c.Key).ToArray()) } })
                 .RouteHandler = new MultiCultureMvcRouteHandler();
             
 
@@ -74,7 +73,7 @@
         public class CultureConstraint : IRouteConstraint
         {
             private readonly string[] values;
-            
+
             public CultureConstraint(params string[] values)
             {
                 this.values = values;

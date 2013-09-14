@@ -1,13 +1,11 @@
-﻿@*@Html.ActionLink("Change culture", "Index", "Culture")*@
+﻿@{
+    ViewBag.Title = "Change culture";
+}
 
-@*<select class="select-culture">
-    @foreach (var culture in Andriy.Mvc4Application1.Localization.Culture.Cultures)
-    {
-        <option value="@culture.Key" @(Culture == @culture.Key ? "selected=\"selected\"" : "")>@culture.Name</option>
-    }
-</select>*@
+<h2>Change culture</h2>
 
 <div class="change-culture">
+    <div>
     @foreach (var culture in Andriy.Mvc4Application1.Localization.Culture.Cultures)
     {
         @Html.ActionLink(
@@ -19,5 +17,7 @@
                     id = HttpContext.Current.Request.RequestContext.RouteData.Values["id"] as string,
                     culture = culture.Key
                 })
+        <br />
     }
+    </div>
 </div>

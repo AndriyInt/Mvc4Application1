@@ -158,6 +158,10 @@ footer {
     height: 100px;
 }
 
+.change-culture {
+    max-height: 50px;
+    overflow-y: auto;
+}
 
 /* site title
 ----------------------------------------------------------*/
