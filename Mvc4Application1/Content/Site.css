@@ -102,6 +102,8 @@ h5, h6 {
 }
 
 .editor-field {
+    /*max-height: 20px;
+    overflow: hidden;*/
 }
 
 .product-details img.thumbnail {
@@ -796,3 +798,19 @@ tr.pager td {
             margin: 0;
         }
 }
+
+/* Customized views 
+    --------------------------------------*/
+
+/* Category index */
+
+.category-index table td.description {
+    max-width: 400px;
+    overflow: hidden;
+}
+
+.category-index table div.description {
+    max-height: 20px;
+    overflow: hidden;
+}
+

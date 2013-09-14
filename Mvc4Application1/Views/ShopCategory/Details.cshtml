@@ -1,10 +1,10 @@
 ﻿@model Andriy.Mvc4Application1.Models.ShopCategory
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Category Details";
 }
 
-<h2>Details</h2>
+<h2>Category Details</h2>
 
 <fieldset>
     <legend>ShopCategory</legend>
@@ -21,6 +21,16 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Description)
+    </div>
+        
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ParentCategory)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentCategory.Name)
+    </div>
+    PC<div>
+        @Model.ParentCategory
     </div>
 </fieldset>
 <p>
