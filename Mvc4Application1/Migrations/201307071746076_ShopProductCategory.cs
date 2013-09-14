@@ -1,8 +1,7 @@
-namespace Mvc4Application1.Migrations
+namespace Andriy.Mvc4Application1.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class ShopProductCategory : DbMigration
     {
         public override void Up()

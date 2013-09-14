@@ -1,13 +1,12 @@
-﻿namespace Mvc4Application1
+﻿namespace Andriy.Mvc4Application1
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+
+    using Andriy.Mvc4Application1.App_Start;
 
     using log4net;
 
@@ -48,9 +47,9 @@
         {
             if (this.Server != null)
             {
-                var ex = Server.GetLastError();
+                var ex = this.Server.GetLastError();
 
-                if (Response.StatusCode != 404)
+                if (this.Response.StatusCode != 404)
                 {
                     Logger.Error("Caught in Global.asax", ex);
                 }

@@ -1,13 +1,10 @@
-﻿namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data;
-    using System.Data.Entity;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-    using Mvc4Application1.DAL;
+
+    using Andriy.Mvc4Application1.DAL;
 
     public class CategoriesController : Controller
     {
@@ -22,9 +19,9 @@
             }
 
             int categoriesCount = this.db.Categories.Count();
-            ViewBag.PageNo = startFrom / categoriesPerPage;
-            ViewBag.PagesCount = categoriesCount / categoriesPerPage;
-            ViewBag.CategoriesPerPage = categoriesPerPage;
+            this.ViewBag.PageNo = startFrom / categoriesPerPage;
+            this.ViewBag.PagesCount = categoriesCount / categoriesPerPage;
+            this.ViewBag.CategoriesPerPage = categoriesPerPage;
 
             var categories = this.db.Categories
                 ////.Include(c => c.Category1);
@@ -47,8 +44,8 @@
         // GET: /Categories/Create
         public ActionResult Create()
         {
-            ViewBag.ParentCategoryId = new SelectList(db.Categories, "CategoryId", "Name");
-            return View();
+            this.ViewBag.ParentCategoryId = new SelectList(this.db.Categories, "CategoryId", "Name");
+            return this.View();
         }
 
         // POST: /Categories/Create
@@ -56,7 +53,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(Category category)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 if (category.Name == null)
                 {
@@ -73,7 +70,7 @@
                 return this.RedirectToAction("Index");
             }
 
-            ViewBag.ParentCategoryId = new SelectList(this.db.Categories, "CategoryId", "Name", category.ParentCategoryId);
+            this.ViewBag.ParentCategoryId = new SelectList(this.db.Categories, "CategoryId", "Name", category.ParentCategoryId);
             return this.View(category);
         }
 
@@ -86,7 +83,7 @@
                 return this.HttpNotFound();
             }
 
-            ViewBag.ParentCategoryId = new SelectList(this.db.Categories, "CategoryId", "Name", category.ParentCategoryId);
+            this.ViewBag.ParentCategoryId = new SelectList(this.db.Categories, "CategoryId", "Name", category.ParentCategoryId);
             return this.View(category);
         }
 
@@ -95,7 +92,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Category category)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 if (category.Name == null)
                 {
@@ -112,7 +109,7 @@
                 return this.RedirectToAction("Index");
             }
 
-            ViewBag.ParentCategoryId = new SelectList(this.db.Categories, "CategoryId", "Name", category.ParentCategoryId);
+            this.ViewBag.ParentCategoryId = new SelectList(this.db.Categories, "CategoryId", "Name", category.ParentCategoryId);
             return this.View(category);
         }
 

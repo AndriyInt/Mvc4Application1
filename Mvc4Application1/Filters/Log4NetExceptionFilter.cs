@@ -1,4 +1,4 @@
-﻿namespace Mvc4Application1.Filters
+﻿namespace Andriy.Mvc4Application1.Filters
 {
     using System;
     using System.Web;

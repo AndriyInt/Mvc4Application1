@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Mvc4Application1.Models;
-
-namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
+    using System.Data;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Andriy.Mvc4Application1.Models;
+
     public class ShopProductController : Controller
     {
         private MovieDBContext db = new MovieDBContext();
@@ -18,7 +15,7 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Index()
         {
-            return View(db.ShopProducts.ToList());
+            return this.View(this.db.ShopProducts.ToList());
         }
 
         //
@@ -26,12 +23,12 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            ShopProduct shopproduct = db.ShopProducts.Find(id);
+            ShopProduct shopproduct = this.db.ShopProducts.Find(id);
             if (shopproduct == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(shopproduct);
+            return this.View(shopproduct);
         }
 
         //
@@ -39,7 +36,7 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         //
@@ -49,14 +46,14 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ShopProduct shopproduct)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.ShopProducts.Add(shopproduct);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.ShopProducts.Add(shopproduct);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
 
-            return View(shopproduct);
+            return this.View(shopproduct);
         }
 
         //
@@ -64,12 +61,12 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            ShopProduct shopproduct = db.ShopProducts.Find(id);
+            ShopProduct shopproduct = this.db.ShopProducts.Find(id);
             if (shopproduct == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(shopproduct);
+            return this.View(shopproduct);
         }
 
         //
@@ -79,13 +76,13 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ShopProduct shopproduct)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(shopproduct).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(shopproduct).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(shopproduct);
+            return this.View(shopproduct);
         }
 
         //
@@ -93,12 +90,12 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            ShopProduct shopproduct = db.ShopProducts.Find(id);
+            ShopProduct shopproduct = this.db.ShopProducts.Find(id);
             if (shopproduct == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(shopproduct);
+            return this.View(shopproduct);
         }
 
         //
@@ -108,15 +105,15 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ShopProduct shopproduct = db.ShopProducts.Find(id);
-            db.ShopProducts.Remove(shopproduct);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            ShopProduct shopproduct = this.db.ShopProducts.Find(id);
+            this.db.ShopProducts.Remove(shopproduct);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            this.db.Dispose();
             base.Dispose(disposing);
         }
     }

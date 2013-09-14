@@ -1,9 +1,7 @@
-﻿namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
 
     public class HelloWorldController : Controller
@@ -11,15 +9,15 @@
         // GET: /HelloWorld/
         public ActionResult Index()
         {
-            ViewBag.Message = LResources.HelloWorld.Index.Welcome;
+            this.ViewBag.Message = LResources.HelloWorld.Index.Welcome;
 
             return this.View();
         }
 
         public ActionResult Welcome(string name, int numTimes = 1)
         {
-            ViewBag.Message = "Hello " + name;
-            ViewBag.NumTimes = numTimes;
+            this.ViewBag.Message = "Hello " + name;
+            this.ViewBag.NumTimes = numTimes;
 
             return this.View();
         }
@@ -33,7 +31,7 @@
 
         public ActionResult Other(string submit)
         {
-            ViewBag.flag = submit;
+            this.ViewBag.flag = submit;
             return this.View();
         }
 
@@ -56,7 +54,7 @@
         [HttpPost]
         public ActionResult ShowPerson(FormCollection fc, DAL.Person person)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 return this.RedirectToAction("Index");
             }
@@ -84,9 +82,9 @@
 
                 int categoriesCount = db.Categories.Count();
                 ////ViewBag.CategoriesCount = categoriesCount;
-                ViewBag.PageNo = startFrom / categoriesPerPage;
-                ViewBag.PagesCount = categoriesCount / categoriesPerPage;
-                ViewBag.CategoriesPerPage = categoriesPerPage;
+                this.ViewBag.PageNo = startFrom / categoriesPerPage;
+                this.ViewBag.PagesCount = categoriesCount / categoriesPerPage;
+                this.ViewBag.CategoriesPerPage = categoriesPerPage;
 
 
                 return this.View(categories);

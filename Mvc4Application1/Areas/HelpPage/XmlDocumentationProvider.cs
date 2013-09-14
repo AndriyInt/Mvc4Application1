@@ -1,13 +1,13 @@
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
-using System.Xml.XPath;
-
-namespace MvcApplicationApi.Areas.HelpPage
+namespace Andriy.Mvc4Application1.Areas.HelpPage
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Description;
+    using System.Xml.XPath;
+
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
     /// </summary>
@@ -28,12 +28,12 @@ namespace MvcApplicationApi.Areas.HelpPage
                 throw new ArgumentNullException("documentPath");
             }
             XPathDocument xpath = new XPathDocument(documentPath);
-            _documentNavigator = xpath.CreateNavigator();
+            this._documentNavigator = xpath.CreateNavigator();
         }
 
         public virtual string GetDocumentation(HttpActionDescriptor actionDescriptor)
         {
-            XPathNavigator methodNode = GetMethodNode(actionDescriptor);
+            XPathNavigator methodNode = this.GetMethodNode(actionDescriptor);
             if (methodNode != null)
             {
                 XPathNavigator summaryNode = methodNode.SelectSingleNode("summary");
@@ -51,7 +51,7 @@ namespace MvcApplicationApi.Areas.HelpPage
             ReflectedHttpParameterDescriptor reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
             if (reflectedParameterDescriptor != null)
             {
-                XPathNavigator methodNode = GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
+                XPathNavigator methodNode = this.GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
                 if (methodNode != null)
                 {
                     string parameterName = reflectedParameterDescriptor.ParameterInfo.Name;
@@ -72,7 +72,7 @@ namespace MvcApplicationApi.Areas.HelpPage
             if (reflectedActionDescriptor != null)
             {
                 string selectExpression = String.Format(CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
-                return _documentNavigator.SelectSingleNode(selectExpression);
+                return this._documentNavigator.SelectSingleNode(selectExpression);
             }
 
             return null;

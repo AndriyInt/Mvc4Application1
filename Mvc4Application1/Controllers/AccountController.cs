@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-using DotNetOpenAuth.AspNet;
-using Microsoft.Web.WebPages.OAuth;
-using WebMatrix.WebData;
-using Mvc4Application1.Filters;
-using Mvc4Application1.Models;
-
-namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Transactions;
+    using System.Web.Mvc;
+    using System.Web.Security;
+
+    using Andriy.Mvc4Application1.Filters;
+    using Andriy.Mvc4Application1.Models;
+
+    using DotNetOpenAuth.AspNet;
+
+    using Microsoft.Web.WebPages.OAuth;
+
+    using WebMatrix.WebData;
+
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller
@@ -23,7 +26,7 @@ namespace Mvc4Application1.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            this.ViewBag.ReturnUrl = returnUrl;
             return this.View();
         }
 
@@ -35,7 +38,7 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (this.ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 return this.RedirectToLocal(returnUrl);
             }
@@ -63,7 +66,7 @@ namespace Mvc4Application1.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return this.View();
         }
 
         //
@@ -74,23 +77,23 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 // Attempt to register the user
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError(string.Empty, ErrorCodeToString(e.StatusCode));
+                    this.ModelState.AddModelError(string.Empty, ErrorCodeToString(e.StatusCode));
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return this.View(model);
         }
 
         //
@@ -104,13 +107,13 @@ namespace Mvc4Application1.Controllers
             ManageMessageId? message = null;
 
             // Only disassociate the account if the currently logged in user is the owner
-            if (ownerAccount == User.Identity.Name)
+            if (ownerAccount == this.User.Identity.Name)
             {
                 // Use a transaction to prevent the user from deleting their last login credential
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
                 {
-                    bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-                    if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)
+                    bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(this.User.Identity.Name));
+                    if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(this.User.Identity.Name).Count > 1)
                     {
                         OAuthWebSecurity.DeleteAccount(provider, providerUserId);
                         scope.Complete();
@@ -119,7 +122,7 @@ namespace Mvc4Application1.Controllers
                 }
             }
 
-            return RedirectToAction("Manage", new { Message = message });
+            return this.RedirectToAction("Manage", new { Message = message });
         }
 
         //
@@ -127,14 +130,14 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
+            this.ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : string.Empty;
-            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+            this.ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(this.User.Identity.Name));
+            this.ViewBag.ReturnUrl = this.Url.Action("Manage");
+            return this.View();
         }
 
         //
@@ -144,18 +147,18 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
         {
-            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.HasLocalPassword = hasLocalAccount;
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(this.User.Identity.Name));
+            this.ViewBag.HasLocalPassword = hasLocalAccount;
+            this.ViewBag.ReturnUrl = this.Url.Action("Manage");
             if (hasLocalAccount)
             {
-                if (ModelState.IsValid)
+                if (this.ModelState.IsValid)
                 {
                     // ChangePassword will throw an exception rather than return false in certain failure scenarios.
                     bool changePasswordSucceeded;
                     try
                     {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                        changePasswordSucceeded = WebSecurity.ChangePassword(this.User.Identity.Name, model.OldPassword, model.NewPassword);
                     }
                     catch (Exception)
                     {
@@ -164,11 +167,11 @@ namespace Mvc4Application1.Controllers
 
                     if (changePasswordSucceeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return this.RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "The current password is incorrect or the new password is invalid.");
+                        this.ModelState.AddModelError(string.Empty, "The current password is incorrect or the new password is invalid.");
                     }
                 }
             }
@@ -176,28 +179,28 @@ namespace Mvc4Application1.Controllers
             {
                 // User does not have a local password so remove any validation errors caused by a missing
                 // OldPassword field
-                ModelState state = ModelState["OldPassword"];
+                ModelState state = this.ModelState["OldPassword"];
                 if (state != null)
                 {
                     state.Errors.Clear();
                 }
 
-                if (ModelState.IsValid)
+                if (this.ModelState.IsValid)
                 {
                     try
                     {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        WebSecurity.CreateAccount(this.User.Identity.Name, model.NewPassword);
+                        return this.RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
                     catch (Exception e)
                     {
-                        ModelState.AddModelError(string.Empty, e);
+                        this.ModelState.AddModelError(string.Empty, e);
                     }
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return this.View(model);
         }
 
         //
@@ -208,7 +211,7 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
-            return new ExternalLoginResult(provider, Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            return new ExternalLoginResult(provider, this.Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
         }
 
         //
@@ -217,30 +220,30 @@ namespace Mvc4Application1.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
-            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(this.Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
             if (!result.IsSuccessful)
             {
-                return RedirectToAction("ExternalLoginFailure");
+                return this.RedirectToAction("ExternalLoginFailure");
             }
 
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {
-                return RedirectToLocal(returnUrl);
+                return this.RedirectToLocal(returnUrl);
             }
 
-            if (User.Identity.IsAuthenticated)
+            if (this.User.Identity.IsAuthenticated)
             {
                 // If the current user is logged in add the new account
-                OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
-                return RedirectToLocal(returnUrl);
+                OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, this.User.Identity.Name);
+                return this.RedirectToLocal(returnUrl);
             }
             else
             {
                 // User is new, ask for their desired membership name
                 string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-                ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
-                ViewBag.ReturnUrl = returnUrl;
-                return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
+                this.ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
+                this.ViewBag.ReturnUrl = returnUrl;
+                return this.View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
             }
         }
 
@@ -255,12 +258,12 @@ namespace Mvc4Application1.Controllers
             string provider = null;
             string providerUserId = null;
 
-            if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
+            if (this.User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
             {
-                return RedirectToAction("Manage");
+                return this.RedirectToAction("Manage");
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 // Insert a new user into the database
                 using (UsersContext db = new UsersContext())
@@ -276,18 +279,18 @@ namespace Mvc4Application1.Controllers
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
 
-                        return RedirectToLocal(returnUrl);
+                        return this.RedirectToLocal(returnUrl);
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        this.ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
                     }
                 }
             }
 
-            ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(provider).DisplayName;
-            ViewBag.ReturnUrl = returnUrl;
-            return View(model);
+            this.ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(provider).DisplayName;
+            this.ViewBag.ReturnUrl = returnUrl;
+            return this.View(model);
         }
 
         //
@@ -296,21 +299,21 @@ namespace Mvc4Application1.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
-            return View();
+            return this.View();
         }
 
         [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult ExternalLoginsList(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return PartialView("_ExternalLoginsListPartial", OAuthWebSecurity.RegisteredClientData);
+            this.ViewBag.ReturnUrl = returnUrl;
+            return this.PartialView("_ExternalLoginsListPartial", OAuthWebSecurity.RegisteredClientData);
         }
 
         [ChildActionOnly]
         public ActionResult RemoveExternalLogins()
         {
-            ICollection<OAuthAccount> accounts = OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name);
+            ICollection<OAuthAccount> accounts = OAuthWebSecurity.GetAccountsFromUserName(this.User.Identity.Name);
             List<ExternalLogin> externalLogins = new List<ExternalLogin>();
             foreach (OAuthAccount account in accounts)
             {
@@ -324,20 +327,20 @@ namespace Mvc4Application1.Controllers
                 });
             }
 
-            ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            return PartialView("_RemoveExternalLoginsPartial", externalLogins);
+            this.ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(this.User.Identity.Name));
+            return this.PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (this.Url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
+                return this.Redirect(returnUrl);
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
         }
 
@@ -352,8 +355,8 @@ namespace Mvc4Application1.Controllers
         {
             public ExternalLoginResult(string provider, string returnUrl)
             {
-                Provider = provider;
-                ReturnUrl = returnUrl;
+                this.Provider = provider;
+                this.ReturnUrl = returnUrl;
             }
 
             public string Provider { get; private set; }
@@ -361,7 +364,7 @@ namespace Mvc4Application1.Controllers
 
             public override void ExecuteResult(ControllerContext context)
             {
-                OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
+                OAuthWebSecurity.RequestAuthentication(this.Provider, this.ReturnUrl);
             }
         }
 

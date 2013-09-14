@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Http;
-using Mvc4Application1.Models;
-
-namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.Entity.Infrastructure;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+
+    using Andriy.Mvc4Application1.Models;
+
     public class MovieApiController : ApiController
     {
         private MovieDBContext db = new MovieDBContext();
@@ -19,16 +18,16 @@ namespace Mvc4Application1.Controllers
         // GET api/MovieApi
         public IEnumerable<Movie> GetMovies()
         {
-            return db.Movies.AsEnumerable();
+            return this.db.Movies.AsEnumerable();
         }
 
         // GET api/MovieApi/5
         public Movie GetMovie(int id)
         {
-            Movie movie = db.Movies.Find(id);
+            Movie movie = this.db.Movies.Find(id);
             if (movie == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                throw new HttpResponseException(this.Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
             return movie;
@@ -37,74 +36,74 @@ namespace Mvc4Application1.Controllers
         // PUT api/MovieApi/5
         public HttpResponseMessage PutMovie(int id, Movie movie)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState);
             }
 
             if (id != movie.ID)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return this.Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(movie).State = EntityState.Modified;
+            this.db.Entry(movie).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                this.db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return this.Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return this.Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // POST api/MovieApi
         public HttpResponseMessage PostMovie(Movie movie)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Movies.Add(movie);
-                db.SaveChanges();
+                this.db.Movies.Add(movie);
+                this.db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, movie);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = movie.ID }));
+                HttpResponseMessage response = this.Request.CreateResponse(HttpStatusCode.Created, movie);
+                response.Headers.Location = new Uri(this.Url.Link("DefaultApi", new { id = movie.ID }));
                 return response;
             }
             else
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState);
             }
         }
 
         // DELETE api/MovieApi/5
         public HttpResponseMessage DeleteMovie(int id)
         {
-            Movie movie = db.Movies.Find(id);
+            Movie movie = this.db.Movies.Find(id);
             if (movie == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return this.Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Movies.Remove(movie);
+            this.db.Movies.Remove(movie);
 
             try
             {
-                db.SaveChanges();
+                this.db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return this.Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, movie);
+            return this.Request.CreateResponse(HttpStatusCode.OK, movie);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            this.db.Dispose();
             base.Dispose(disposing);
         }
     }

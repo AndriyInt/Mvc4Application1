@@ -1,8 +1,7 @@
-﻿using System.Web;
-using System.Web.Optimization;
-
-namespace Mvc4Application1
+﻿namespace Andriy.Mvc4Application1.App_Start
 {
+    using System.Web.Optimization;
+
     public class BundleConfig
     {
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725

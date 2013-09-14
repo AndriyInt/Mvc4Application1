@@ -1,11 +1,8 @@
-﻿namespace Mvc4Application1.Models
+﻿namespace Andriy.Mvc4Application1.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Web;
-    
+
     public class Movie
     {
         public int ID { get; set; }

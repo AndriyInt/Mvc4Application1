@@ -1,13 +1,15 @@
-﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Threading;
-using System.Web.Mvc;
-using WebMatrix.WebData;
-using Mvc4Application1.Models;
-
-namespace Mvc4Application1.Filters
+﻿namespace Andriy.Mvc4Application1.Filters
 {
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Threading;
+    using System.Web.Mvc;
+
+    using Andriy.Mvc4Application1.Models;
+
+    using WebMatrix.WebData;
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute
     {

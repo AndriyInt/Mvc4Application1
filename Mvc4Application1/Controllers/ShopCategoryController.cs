@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Mvc4Application1.Models;
-
-namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
+    using System.Data;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Andriy.Mvc4Application1.Models;
+
     public class ShopCategoryController : Controller
     {
         private MovieDBContext db = new MovieDBContext();
@@ -18,7 +15,7 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Index()
         {
-            return View(db.ShopCategories.ToList());
+            return this.View(this.db.ShopCategories.ToList());
         }
 
         //
@@ -26,12 +23,12 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            ShopCategory shopcategory = db.ShopCategories.Find(id);
+            ShopCategory shopcategory = this.db.ShopCategories.Find(id);
             if (shopcategory == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(shopcategory);
+            return this.View(shopcategory);
         }
 
         //
@@ -39,7 +36,7 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         //
@@ -49,14 +46,14 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ShopCategory shopcategory)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.ShopCategories.Add(shopcategory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.ShopCategories.Add(shopcategory);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
 
-            return View(shopcategory);
+            return this.View(shopcategory);
         }
 
         //
@@ -64,12 +61,12 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            ShopCategory shopcategory = db.ShopCategories.Find(id);
+            ShopCategory shopcategory = this.db.ShopCategories.Find(id);
             if (shopcategory == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(shopcategory);
+            return this.View(shopcategory);
         }
 
         //
@@ -79,13 +76,13 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ShopCategory shopcategory)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(shopcategory).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(shopcategory).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(shopcategory);
+            return this.View(shopcategory);
         }
 
         //
@@ -93,12 +90,12 @@ namespace Mvc4Application1.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            ShopCategory shopcategory = db.ShopCategories.Find(id);
+            ShopCategory shopcategory = this.db.ShopCategories.Find(id);
             if (shopcategory == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(shopcategory);
+            return this.View(shopcategory);
         }
 
         //
@@ -108,15 +105,15 @@ namespace Mvc4Application1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ShopCategory shopcategory = db.ShopCategories.Find(id);
-            db.ShopCategories.Remove(shopcategory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            ShopCategory shopcategory = this.db.ShopCategories.Find(id);
+            this.db.ShopCategories.Remove(shopcategory);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            this.db.Dispose();
             base.Dispose(disposing);
         }
     }

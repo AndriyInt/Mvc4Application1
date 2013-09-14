@@ -1,4 +1,4 @@
-namespace MvcApplicationApi.Areas.HelpPage
+namespace Andriy.Mvc4Application1.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Web.WebPages.OAuth;
-using Mvc4Application1.Models;
-
-namespace Mvc4Application1
+﻿namespace Andriy.Mvc4Application1.App_Start
 {
+    using Microsoft.Web.WebPages.OAuth;
+
     public static class AuthConfig
     {
         public static void RegisterAuth()

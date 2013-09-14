@@ -1,14 +1,11 @@
-﻿namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
-    using System.Web;
     using System.Web.Mvc;
 
-    using Mvc4Application1.Models;
+    using Andriy.Mvc4Application1.Models;
 
     public class AdminController : Controller
     {
@@ -28,7 +25,7 @@
         public ActionResult ShowLogs(string path)
         {
             //path = "elmah";
-            var fullPath = Server.MapPath(string.Format("{0}{1}/", LogDir, path));
+            var fullPath = this.Server.MapPath(string.Format("{0}{1}/", LogDir, path));
             var fullPathLength = fullPath.Length;
 
             string parentDirPath = null;
@@ -60,21 +57,21 @@
         {
             ////this.Response.WriteFile(Server.MapPath("~/Logs/2013.09.07.log.resources"));
 
-            var fullFilePath = Server.MapPath(string.Format("{0}/{1}", LogDir, relFname));
+            var fullFilePath = this.Server.MapPath(string.Format("{0}/{1}", LogDir, relFname));
             var file = new System.IO.FileInfo(fullFilePath);
             
-            Response.Clear();
-            Response.ClearHeaders();
-            Response.ClearContent();
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-            Response.AddHeader("Content-Length", file.Length.ToString(CultureInfo.InvariantCulture));
-            Response.ContentType = "text/plain";
+            this.Response.Clear();
+            this.Response.ClearHeaders();
+            this.Response.ClearContent();
+            this.Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
+            this.Response.AddHeader("Content-Length", file.Length.ToString(CultureInfo.InvariantCulture));
+            this.Response.ContentType = "text/plain";
 
-            Response.Flush();
+            this.Response.Flush();
 
-            Response.TransmitFile(file.FullName);
+            this.Response.TransmitFile(file.FullName);
 
-            Response.End();
+            this.Response.End();
         }
     }
 }

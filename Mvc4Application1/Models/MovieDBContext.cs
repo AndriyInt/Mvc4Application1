@@ -1,4 +1,4 @@
-﻿namespace Mvc4Application1.Models
+﻿namespace Andriy.Mvc4Application1.Models
 {
     using System.Data.Entity;
 

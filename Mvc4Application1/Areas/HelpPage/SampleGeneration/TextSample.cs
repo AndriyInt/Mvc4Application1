@@ -1,7 +1,7 @@
-using System;
-
-namespace MvcApplicationApi.Areas.HelpPage
+namespace Andriy.Mvc4Application1.Areas.HelpPage.SampleGeneration
 {
+    using System;
+
     /// <summary>
     /// This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
     /// </summary>
@@ -13,7 +13,7 @@ namespace MvcApplicationApi.Areas.HelpPage
             {
                 throw new ArgumentNullException("text");
             }
-            Text = text;
+            this.Text = text;
         }
 
         public string Text { get; private set; }
@@ -21,17 +21,17 @@ namespace MvcApplicationApi.Areas.HelpPage
         public override bool Equals(object obj)
         {
             TextSample other = obj as TextSample;
-            return other != null && Text == other.Text;
+            return other != null && this.Text == other.Text;
         }
 
         public override int GetHashCode()
         {
-            return Text.GetHashCode();
+            return this.Text.GetHashCode();
         }
 
         public override string ToString()
         {
-            return Text;
+            return this.Text;
         }
     }
 }

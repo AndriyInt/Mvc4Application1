@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Mvc4Application1.RouteHandlers;
-
-namespace Mvc4Application1
+﻿namespace Andriy.Mvc4Application1.App_Start
 {
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
+    using Andriy.Mvc4Application1.RouteHandlers;
+
     public class RouteConfig
     {
         public static readonly string[] Cultures = new[] { "en-US", "en-GB", "uk-UA" };
@@ -20,14 +19,14 @@ namespace Mvc4Application1
                 name: "Books",
                 url: "Books/{id}",
                 defaults: new { controller = "HelloWorld", action = "Books", id = UrlParameter.Optional },
-                namespaces: new[] { "Mvc4Application1.Controllers" });
+                namespaces: new[] { "Andriy.Mvc4Application1.Controllers" });
 
             routes.MapRoute(
                 name: "Books2",
                 url: "Books2/{id}",
                 defaults: new { controller = "HelloWorld", action = "Books2", id = UrlParameter.Optional },
                 constraints: new { id = @"\d+" },
-                namespaces: new[] { "Mvc4Application1.Controllers" });
+                namespaces: new[] { "Andriy.Mvc4Application1.Controllers" });
 
             routes.MapRoute(
                 name: "Default",
@@ -38,7 +37,7 @@ namespace Mvc4Application1
                     controller = "Home", 
                     action = "Index", id = UrlParameter.Optional
                 },
-                namespaces: new[] { "Mvc4Application1.Controllers" },
+                namespaces: new[] { "Andriy.Mvc4Application1.Controllers" },
                 constraints: new RouteValueDictionary { { "culture", new CultureConstraint(Cultures) } })
                 .RouteHandler = new MultiCultureMvcRouteHandler();
             

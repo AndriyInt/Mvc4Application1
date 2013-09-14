@@ -1,4 +1,4 @@
-﻿namespace Mvc4Application1
+﻿namespace Andriy.Mvc4Application1
 {
     public class Utils
     {

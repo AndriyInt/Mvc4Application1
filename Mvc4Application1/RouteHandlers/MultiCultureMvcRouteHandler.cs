@@ -1,11 +1,11 @@
-﻿using System.Globalization;
-using System.Threading;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace Mvc4Application1.RouteHandlers
+﻿namespace Andriy.Mvc4Application1.RouteHandlers
 {
+    using System.Globalization;
+    using System.Threading;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class MultiCultureMvcRouteHandler : MvcRouteHandler
     {
         protected override IHttpHandler GetHttpHandler(RequestContext requestContext)

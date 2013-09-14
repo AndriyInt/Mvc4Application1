@@ -1,6 +1,5 @@
-﻿namespace Mvc4Application1
+﻿namespace Andriy.Mvc4Application1.App_Start
 {
-    using System.Web;
     using System.Web.Mvc;
 
     public class FilterConfig

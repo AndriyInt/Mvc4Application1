@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Mvc4Application1.Models;
-
-namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
-    using System.Globalization;
+    using System.Data;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Andriy.Mvc4Application1.Models;
 
     public class MovieController : Controller
     {
@@ -51,7 +46,7 @@ namespace Mvc4Application1.Controllers
         [HttpPost]
         public ActionResult Create(Movie movie)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.db.Movies.Add(movie);
                 this.db.SaveChanges();
@@ -81,7 +76,7 @@ namespace Mvc4Application1.Controllers
         [HttpPost]
         public ActionResult Edit(Movie movie)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.db.Entry(movie).State = EntityState.Modified;
                 this.db.SaveChanges();
@@ -151,7 +146,7 @@ namespace Mvc4Application1.Controllers
                 .Select(m => m.Genre)
                 .Distinct()
                 .ToList();
-            ViewBag.movieGenre = new SelectList(genreLst);
+            this.ViewBag.movieGenre = new SelectList(genreLst);
 
             var movies = from m in this.db.Movies
                          select m;

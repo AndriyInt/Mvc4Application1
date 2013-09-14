@@ -1,13 +1,12 @@
-namespace Mvc4Application1.Migrations
+namespace Andriy.Mvc4Application1.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class ShopProductCategory2 : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
+            this.CreateTable(
                 "dbo.ShopCategories",
                 c => new
                     {
@@ -20,7 +19,7 @@ namespace Mvc4Application1.Migrations
                 .ForeignKey("dbo.ShopCategories", t => t.ShopCategory_CategoryId)
                 .Index(t => t.ShopCategory_CategoryId);
             
-            CreateTable(
+            this.CreateTable(
                 "dbo.ShopProducts",
                 c => new
                     {
@@ -34,7 +33,7 @@ namespace Mvc4Application1.Migrations
                     })
                 .PrimaryKey(t => t.ProductId);
             
-            CreateTable(
+            this.CreateTable(
                 "dbo.ShopProductShopCategories",
                 c => new
                     {
@@ -51,15 +50,15 @@ namespace Mvc4Application1.Migrations
         
         public override void Down()
         {
-            DropIndex("dbo.ShopProductShopCategories", new[] { "ShopCategory_CategoryId" });
-            DropIndex("dbo.ShopProductShopCategories", new[] { "ShopProduct_ProductId" });
-            DropIndex("dbo.ShopCategories", new[] { "ShopCategory_CategoryId" });
-            DropForeignKey("dbo.ShopProductShopCategories", "ShopCategory_CategoryId", "dbo.ShopCategories");
-            DropForeignKey("dbo.ShopProductShopCategories", "ShopProduct_ProductId", "dbo.ShopProducts");
-            DropForeignKey("dbo.ShopCategories", "ShopCategory_CategoryId", "dbo.ShopCategories");
-            DropTable("dbo.ShopProductShopCategories");
-            DropTable("dbo.ShopProducts");
-            DropTable("dbo.ShopCategories");
+            this.DropIndex("dbo.ShopProductShopCategories", new[] { "ShopCategory_CategoryId" });
+            this.DropIndex("dbo.ShopProductShopCategories", new[] { "ShopProduct_ProductId" });
+            this.DropIndex("dbo.ShopCategories", new[] { "ShopCategory_CategoryId" });
+            this.DropForeignKey("dbo.ShopProductShopCategories", "ShopCategory_CategoryId", "dbo.ShopCategories");
+            this.DropForeignKey("dbo.ShopProductShopCategories", "ShopProduct_ProductId", "dbo.ShopProducts");
+            this.DropForeignKey("dbo.ShopCategories", "ShopCategory_CategoryId", "dbo.ShopCategories");
+            this.DropTable("dbo.ShopProductShopCategories");
+            this.DropTable("dbo.ShopProducts");
+            this.DropTable("dbo.ShopCategories");
         }
     }
 }

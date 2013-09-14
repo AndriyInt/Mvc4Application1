@@ -1,16 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using System.Web.Http.Description;
-using MvcApplicationApi.Areas.HelpPage.Models;
-
-namespace MvcApplicationApi.Areas.HelpPage
+namespace Andriy.Mvc4Application1.Areas.HelpPage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Net.Http.Headers;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+
+    using Andriy.Mvc4Application1.Areas.HelpPage.Models;
+    using Andriy.Mvc4Application1.Areas.HelpPage.SampleGeneration;
+
     public static class HelpPageConfigurationExtensions
     {
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";

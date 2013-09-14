@@ -1,4 +1,4 @@
-﻿namespace Mvc4Application1.DAL
+﻿namespace Andriy.Mvc4Application1.DAL
 {
     public class ConnectionHelper
     {

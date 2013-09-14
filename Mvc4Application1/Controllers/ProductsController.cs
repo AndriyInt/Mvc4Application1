@@ -1,13 +1,9 @@
-﻿namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Data.Entity;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-    using Mvc4Application1.DAL;
+
+    using Andriy.Mvc4Application1.DAL;
 
     public class ProductsController : Controller
     {
@@ -33,7 +29,7 @@
         // GET: /Products/Create
         public ActionResult Create()
         {
-            ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
+            this.ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
             return this.View();
         }
 
@@ -42,7 +38,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection fc, Product product)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 if (product.Name == null)
                 {
@@ -69,7 +65,7 @@
                 return this.RedirectToAction("Index");
             }
 
-            ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
+            this.ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
             return this.View(product);
         }
 
@@ -82,8 +78,8 @@
                 return this.HttpNotFound();
             }
 
-            ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
-            ViewBag.CategoriesIds = string.Join(",", product.Categories.Select(c => c.CategoryId));
+            this.ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
+            this.ViewBag.CategoriesIds = string.Join(",", product.Categories.Select(c => c.CategoryId));
             return this.View(product);
         }
 
@@ -94,7 +90,7 @@
         {
             ////try
             ////{
-                if (ModelState.IsValid)
+                if (this.ModelState.IsValid)
                 {
                     // Copy values
                     var realProduct = this.db.Products.Find(product.ProductId);
@@ -128,8 +124,8 @@
             ////    throw;
             ////}
 
-            ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
-            ViewBag.CategoriesIds = string.Join(",", product.Categories.Select(c => c.CategoryId));
+            this.ViewBag.categoriesSelectTemplate = new SelectList(this.db.Categories, "CategoryId", "Name");
+            this.ViewBag.CategoriesIds = string.Join(",", product.Categories.Select(c => c.CategoryId));
             return this.View(product);
         }
 

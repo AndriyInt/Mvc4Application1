@@ -1,4 +1,4 @@
-﻿namespace Mvc4Application1.Controllers
+﻿namespace Andriy.Mvc4Application1.Controllers
 {
     using System.Web.Mvc;
 

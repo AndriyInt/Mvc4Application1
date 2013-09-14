@@ -1,13 +1,12 @@
-namespace Mvc4Application1.Migrations
+namespace Andriy.Mvc4Application1.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class Initial : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
+            this.CreateTable(
                 "dbo.Movies",
                 c => new
                     {
@@ -23,7 +22,7 @@ namespace Mvc4Application1.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Movies");
+            this.DropTable("dbo.Movies");
         }
     }
 }

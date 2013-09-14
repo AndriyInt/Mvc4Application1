@@ -1,13 +1,10 @@
-﻿namespace Mvc4Application1.Tests.Controllers
+﻿namespace Andriy.Mvc4Application1.Tests.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
+
+    using Andriy.Mvc4Application1.Controllers;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Mvc4Application1;
-    using Mvc4Application1.Controllers;
 
     [TestClass]
     public class HomeControllerTest

@@ -1,4 +1,4 @@
-﻿namespace Mvc4Application1.Areas.Forum
+﻿namespace Andriy.Mvc4Application1.Areas.Forum
 {
     using System.Web.Mvc;
 
@@ -18,7 +18,7 @@
                 "Forum_default",
                 "Forum/{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new[] { "Mvc4Application1.Areas.Forum.Controllers" });
+                new[] { "Andriy.Mvc4Application1.Areas.Forum.Controllers" });
         }
     }
 }

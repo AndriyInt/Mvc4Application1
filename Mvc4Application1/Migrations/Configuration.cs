@@ -1,11 +1,9 @@
-namespace Mvc4Application1.Migrations
+namespace Andriy.Mvc4Application1.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    using Mvc4Application1.Models;
+    using Andriy.Mvc4Application1.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Mvc4Application1.Models.MovieDBContext>
     {
