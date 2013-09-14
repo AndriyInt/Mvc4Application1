@@ -16,12 +16,10 @@
 
         public string Description { get; set; }
         
-        ////public Nullable<int> ParentCategoryId { get; set; }
-        
-        public ICollection<ShopCategory> Subcategories { get; set; }
+        public virtual ICollection<ShopCategory> Subcategories { get; set; }
         
         [Display(Name = "Parent Category")]
-        public ShopCategory ParentCategory { get; set; }
+        public virtual ShopCategory ParentCategory { get; set; }
 
         public string Path
         {
@@ -37,12 +35,6 @@
             }
         }
 
-        public ICollection<ShopProduct> Products { get; set; }
-
-        ////public ShopCategory()
-        ////{
-        ////    this.Subcategories = new HashSet<ShopCategory>();
-        ////    this.Products = new HashSet<ShopProduct>();
-        ////}
+        public virtual ICollection<ShopProduct> Products { get; set; }
     }
 }
