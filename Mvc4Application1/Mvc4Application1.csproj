@@ -275,6 +275,14 @@
     <Compile Include="Migrations\201307071825201_ShopProductCategory2.Designer.cs">
       <DependentUpon>201307071825201_ShopProductCategory2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309142104582_ParentCategory.cs" />
+    <Compile Include="Migrations\201309142104582_ParentCategory.Designer.cs">
+      <DependentUpon>201309142104582_ParentCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309142106349_ParentCategory2.cs" />
+    <Compile Include="Migrations\201309142106349_ParentCategory2.Designer.cs">
+      <DependentUpon>201309142106349_ParentCategory2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DirectoryListing.cs" />
@@ -905,6 +913,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307071825201_ShopProductCategory2.resx">
       <DependentUpon>201307071825201_ShopProductCategory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309142104582_ParentCategory.resx">
+      <DependentUpon>201309142104582_ParentCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309142106349_ParentCategory2.resx">
+      <DependentUpon>201309142106349_ParentCategory2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

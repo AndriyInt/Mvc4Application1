@@ -38,6 +38,9 @@
         public ActionResult Other2()
         {
             var movie = new Models.Movie { Title = "CustomTitle" };
+
+            var db = new Models.MovieDBContext();
+            var cats = db.ShopCategories.ToArray();
             return this.View(movie);
         }
 
