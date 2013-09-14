@@ -27,7 +27,7 @@
         Image
     </div>
     <div class="display-field">
-        <img class="thumbnail" alt="no image" src="@(string.IsNullOrEmpty(Model.ImageUrl) ? string.Empty : Url.Content(Model.ImageUrl))" />
+        <img class="thumbnail" alt="no image" src="@Url.Content(Model.DisplayImageURL)" />
     </div>
 
     <div class="display-label">

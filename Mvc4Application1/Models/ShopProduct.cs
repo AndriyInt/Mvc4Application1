@@ -30,6 +30,15 @@
 
         public virtual ICollection<ShopCategory> Categories { get; set; }
 
+        [Display(Name = "Image")]
+        public string DisplayImageURL
+        {
+            get
+            {
+                return string.IsNullOrEmpty(this.ImageUrl) ? Consts.DisplayImageURLDefault : this.ImageUrl;
+            }
+        }
+
         ////public ShopProduct()
         ////{
         ////    this.Categories = new HashSet<ShopCategory>();

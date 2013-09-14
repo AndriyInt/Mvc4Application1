@@ -17,6 +17,9 @@
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryfixval").Include(
+                        "~/Scripts/jquery.fix-validate.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -24,6 +27,12 @@
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                         "~/Scripts/knockout-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/product-edit-categories-select").Include(
+                        "~/Scripts/productEdit.categoriesSelect.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/image-popup").Include(
+                        "~/Scripts/image-popup.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

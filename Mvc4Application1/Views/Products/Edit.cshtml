@@ -92,9 +92,9 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script src="~/Scripts/jquery.fix-validate.js"></script>
+    @Scripts.Render("~/bundles/jqueryfixval")
     @*<script src="~/Scripts/jquery.globalize/globalize.js"></script>
     <script src="@globalizeCulturePath"></script>*@
 
-    <script src="~/Scripts/productEdit.categoriesSelect.js"></script>
+    @Scripts.Render("~/bundles/product-edit-categories-select")
 }

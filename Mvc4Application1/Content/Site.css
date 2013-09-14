@@ -114,11 +114,15 @@ img.thumbnail-mini {
     max-width: 700px;
 }
 
-.product-details img.thumbnail:hover,
+img.thumbnail-popup {
+    cursor: pointer;
+}
+
+/*.product-details img.thumbnail:hover,
 img.thumbnail-mini:hover {
     max-height: none;
     max-width: none;
-}
+}*/
 
 /* main layout
 ----------------------------------------------------------*/
