@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using Andriy.Mvc4Application1.Models;
+
     public class HelloWorldController : Controller
     {
         // GET: /HelloWorld/
@@ -91,6 +93,27 @@
 
 
                 return this.View(categories);
+            }
+        }
+
+        public string ShopCategoryTest()
+        {
+            using (var db = new MovieDBContext())
+            {
+                var generalCategory = db.ShopCategories.Single(c => c.CategoryId == 1);
+                var computerPeriphCategory = db.ShopCategories.Single(c => c.CategoryId == 3);
+                var miceCategory = db.ShopCategories.Where(c => c.CategoryId == 4).Single();
+                
+                if (miceCategory.ParentCategory != null)
+                {
+                    miceCategory.ParentCategory = miceCategory.ParentCategory.CategoryId == 3
+                                                      ? generalCategory
+                                                      : computerPeriphCategory;
+                }
+
+                db.SaveChanges();
+
+                return "ShopCategoryTest complete";
             }
         }
     }
