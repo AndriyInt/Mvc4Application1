@@ -59,6 +59,7 @@
             }
         }
 
+        [Display(Name = "Full Path")]
         public string Path
         {
             get

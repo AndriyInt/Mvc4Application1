@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit Category";
 }
 
-<h2>Edit</h2>
+<h2>Edit Category</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -36,7 +36,6 @@
         </div>
         <div class="editor-field">
             @Html.DropDownList("NewParentCategoryId", (IEnumerable<SelectListItem>)ViewBag.CategorySelectList, string.Empty)
-            @*@Html.ValidationMessageFor(model => model.GetParentCategoryId())*@
         </div>
 
         <p>

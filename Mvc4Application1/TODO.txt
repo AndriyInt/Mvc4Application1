@@ -1,3 +1,4 @@
-﻿1. Make ParentCategory field work on saving in ShopCategories
+﻿1. Prevent setting ParentCategory property to CategoryID
+2. ShopCategory -> Edit: make dropdown with indents (or path)
 2. Add image upload in Create/Edit for ShopProducts
 3. Add image viewing for ShopProducts in details, edit, index

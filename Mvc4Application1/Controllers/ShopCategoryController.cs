@@ -1,5 +1,6 @@
 ﻿namespace Andriy.Mvc4Application1.Controllers
 {
+    using System;
     using System.Data;
     using System.Linq;
     using System.Web.Mvc;
@@ -36,6 +37,7 @@
 
         public ActionResult Create()
         {
+            this.ViewBag.CategorySelectList = this.GetCategorySelectList();
             return this.View();
         }
 
@@ -44,15 +46,25 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ShopCategory shopcategory)
+        public ActionResult Create(FormCollection fc, ShopCategory shopcategory)
         {
             if (this.ModelState.IsValid)
             {
+                int newParentCategoryId;
+                var newParentCategory = int.TryParse(fc["NewParentCategoryId"], out newParentCategoryId)
+                                                  ? this.db.ShopCategories.Find(newParentCategoryId)
+                                                  : null;
+                if (newParentCategory != null)
+                {
+                    shopcategory.ParentCategory = newParentCategory;
+                }
+
                 this.db.ShopCategories.Add(shopcategory);
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
 
+            this.ViewBag.CategorySelectList = this.GetCategorySelectList(shopcategory);
             return this.View(shopcategory);
         }
 
@@ -66,6 +78,7 @@
             {
                 return this.HttpNotFound();
             }
+
             this.ViewBag.CategorySelectList = this.GetCategorySelectList(shopcategory);
             return this.View(shopcategory);
         }
@@ -84,17 +97,25 @@
                 origShopCategory.Name = shopcategory.Name;
                 origShopCategory.Description = shopcategory.Description;
 
-                int parentCategoryId;
-                origShopCategory.ParentCategory = int.TryParse(fc["NewParentCategoryId"], out parentCategoryId)
-                                                  ? this.db.ShopCategories.Find(parentCategoryId)
+                int newParentCategoryId;
+                var newParentCategory = int.TryParse(fc["NewParentCategoryId"], out newParentCategoryId)
+                                                  ? this.db.ShopCategories.Find(newParentCategoryId)
                                                   : null;
-
-                ////this.db.Entry(shopcategory).State = EntityState.Modified;
+                if (newParentCategory == null)
+                {
+                    if (origShopCategory.ParentCategory != null)
+                    {
+                        origShopCategory.ParentCategory.Subcategories.Remove(origShopCategory);
+                    }
+                }
+                else
+                {
+                    origShopCategory.ParentCategory = newParentCategory;
+                }
+                
                 this.db.SaveChanges();
 
                 return this.RedirectToAction("Index");
-                ////this.ViewBag.CategorySelectList = this.GetCategorySelectList(origShopCategory);
-                ////return this.View(origShopCategory);
             }
 
             this.ViewBag.CategorySelectList = this.GetCategorySelectList(shopcategory);
@@ -133,9 +154,13 @@
             base.Dispose(disposing);
         }
 
-        private SelectList GetCategorySelectList(ShopCategory category)
+        private SelectList GetCategorySelectList(ShopCategory category = null)
         {
-            return new SelectList(this.db.ShopCategories, "CategoryId", "Name", category.GetParentCategoryId());
+            return new SelectList(
+                this.db.ShopCategories, 
+                "CategoryId", 
+                "Name", 
+                category != null ? category.GetParentCategoryId() : null);
         }
     }
 }

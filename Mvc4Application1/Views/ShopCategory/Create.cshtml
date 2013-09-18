@@ -29,6 +29,12 @@
             @Html.ValidationMessageFor(model => model.Description)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParentCategory)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("NewParentCategoryId", (IEnumerable<SelectListItem>)ViewBag.CategorySelectList, string.Empty)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>
