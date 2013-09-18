@@ -1,3 +1,3 @@
-﻿1. Add ParentCategory field to ShopCategories
+﻿1. Make ParentCategory field work on saving in ShopCategories
 2. Add image upload in Create/Edit for ShopProducts
 3. Add image viewing for ShopProducts in details, edit, index
