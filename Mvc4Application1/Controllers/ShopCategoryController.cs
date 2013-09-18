@@ -92,7 +92,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var origShopCategory = this.db.ShopCategories.Single(c => c.CategoryId == shopcategory.CategoryId);
+                var origShopCategory = this.db.ShopCategories.Find(shopcategory.CategoryId);
 
                 origShopCategory.Name = shopcategory.Name;
                 origShopCategory.Description = shopcategory.Description;
