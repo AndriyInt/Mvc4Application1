@@ -19,22 +19,10 @@
         public virtual ICollection<ShopCategory> Subcategories { get; set; }
         
         [Display(Name = "Parent Category")]
+        //[ForeignKey("ParentCategoryId")]
         public virtual ShopCategory ParentCategory { get; set; }
 
-        //public int? ParentCategoryId
-        //{
-        //    get
-        //    {
-        //        if (ParentCategory != null)
-        //        {
-        //            return ParentCategory.CategoryId;
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //}
+        //public int? ParentCategoryId { get; set; }
 
         public int? GetParentCategoryId()
         {

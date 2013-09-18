@@ -1,10 +1,10 @@
 ﻿@model Andriy.Mvc4Application1.Models.ShopProduct
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Product";
 }
 
-<h2>Edit</h2>
+<h2>Edit Product</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -69,14 +69,15 @@
             <span class="categories-editor"></span>
             <input id="add-category" type="button" value="Add category" />
         </div>
+        
         <p>
             <input type="submit" value="Save" />
         </p>
     </fieldset>
 }
 
-@Html.DropDownList("CategoriesSelectTemplate")
-
+<div id="categoriesSelectTemplateContainer">@Html.DropDownList("categoriesSelectTemplate")</div>
+<span id="old-categories" style="display: none">@ViewBag.CategoriesIds</span>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

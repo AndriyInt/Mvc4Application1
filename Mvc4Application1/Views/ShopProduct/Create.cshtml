@@ -60,6 +60,13 @@
             @Html.EditorFor(model => model.IsPublished)
             @Html.ValidationMessageFor(model => model.IsPublished)
         </div>
+        <div class="editor-label">
+            Categories
+        </div>
+        <div class="editor-field">
+            <span class="categories-editor"></span>
+            <input id="add-category" type="button" value="Add category" />
+        </div>
 
         <p>
             <input type="submit" value="Create" />
@@ -67,10 +74,14 @@
     </fieldset>
 }
 
+<div id="categoriesSelectTemplateContainer">@Html.DropDownList("categoriesSelectTemplate")</div>
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryfixval")
+    @Scripts.Render("~/bundles/product-edit-categories-select")
 }

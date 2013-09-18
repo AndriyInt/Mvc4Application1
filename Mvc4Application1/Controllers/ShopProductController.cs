@@ -1,5 +1,6 @@
 ﻿namespace Andriy.Mvc4Application1.Controllers
 {
+    using System.Collections.ObjectModel;
     using System.Data;
     using System.Linq;
     using System.Web.Mvc;
@@ -36,6 +37,7 @@
 
         public ActionResult Create()
         {
+            this.ViewBag.categoriesSelectTemplate = new SelectList(this.db.ShopCategories, "CategoryId", "Name");
             return this.View();
         }
 
@@ -44,15 +46,27 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ShopProduct shopproduct)
+        public ActionResult Create(FormCollection fc, ShopProduct shopproduct)
         {
             if (this.ModelState.IsValid)
             {
+                shopproduct.Categories = new Collection<ShopCategory>();
+                foreach (string field in fc)
+                {
+                    if (field.StartsWith("category"))
+                    {
+                        var catId = int.Parse(fc[field]);
+                        var cat = this.db.ShopCategories.Find(catId);
+                        shopproduct.Categories.Add(cat);
+                    }
+                }
+
                 this.db.ShopProducts.Add(shopproduct);
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
 
+            this.ViewBag.categoriesSelectTemplate = new SelectList(this.db.ShopCategories, "CategoryId", "Name");
             return this.View(shopproduct);
         }
 
@@ -66,7 +80,9 @@
             {
                 return this.HttpNotFound();
             }
-            this.ViewBag.CategoriesSelectTemplate = new SelectList(this.db.ShopCategories, "CategoryId", "Name");
+
+            this.ViewBag.categoriesSelectTemplate = new SelectList(this.db.ShopCategories, "CategoryId", "Name");
+            this.ViewBag.CategoriesIds = string.Join(",", shopproduct.Categories.Select(c => c.CategoryId));
             return this.View(shopproduct);
         }
 
@@ -75,11 +91,31 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ShopProduct shopproduct)
+        public ActionResult Edit(FormCollection fc, ShopProduct shopproduct)
         {
             if (this.ModelState.IsValid)
             {
-                this.db.Entry(shopproduct).State = EntityState.Modified;
+                shopproduct.Categories = new Collection<ShopCategory>();
+                foreach (string field in fc)
+                {
+                    if (field.StartsWith("category"))
+                    {
+                        var catId = int.Parse(fc[field]);
+                        var cat = this.db.ShopCategories.Find(catId);
+                        shopproduct.Categories.Add(cat);
+                    }
+                }
+
+                var realProduct = this.db.ShopProducts.Find(shopproduct.ProductId);
+                realProduct.Name = shopproduct.Name;
+                realProduct.Description = shopproduct.Description;
+                realProduct.ImageUrl = shopproduct.ImageUrl;
+                realProduct.IsFeatured = shopproduct.IsFeatured;
+                realProduct.IsPublished = shopproduct.IsPublished;
+                realProduct.Price = shopproduct.Price;
+                realProduct.Categories.Clear();
+                realProduct.Categories = shopproduct.Categories;
+
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }

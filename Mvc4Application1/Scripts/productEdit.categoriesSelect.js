@@ -32,7 +32,7 @@
         var oldCategoriesStr = $("#old-categories").html();
 
         oldCategoriesIds = oldCategoriesStr ? oldCategoriesStr.split(",") : [];
-        categoriesSelectTemplate = $("#categoriesSelectTemplate");
+        categoriesSelectTemplate = $("#categoriesSelectTemplateContainer").find('select');
         categoriesSelectTemplate.hide();
 
         var categoriesEditor = $(".categories-editor");

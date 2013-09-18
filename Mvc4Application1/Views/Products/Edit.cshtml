@@ -81,8 +81,7 @@
     </fieldset>
 }
 
-@Html.DropDownList("categoriesSelectTemplate")
-
+<div id="categoriesSelectTemplateContainer">@Html.DropDownList("categoriesSelectTemplate")</div>
 <span id="old-categories" style="display: none">@ViewBag.CategoriesIds</span>
 
 <div>
