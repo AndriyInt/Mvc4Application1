@@ -66,7 +66,7 @@
             {
                 return this.HttpNotFound();
             }
-            this.ViewBag.CategorySelectList = new SelectList(this.db.ShopCategories, "CategoryId", "Name", shopcategory.GetParentCategoryId());
+            this.ViewBag.CategorySelectList = this.GetCategorySelectList(shopcategory);
             return this.View(shopcategory);
         }
 
@@ -77,25 +77,27 @@
         [ValidateAntiForgeryToken]
         public ActionResult Edit(FormCollection fc, ShopCategory shopcategory)
         {
-            int parentCategoryId;
-            if (int.TryParse(fc["NewParentCategoryId"], out parentCategoryId))
-            {
-                shopcategory.ParentCategory = this.db.ShopCategories.Find(parentCategoryId);
-            }
-            else
-            {
-                shopcategory.ParentCategory = null;
-            }
-
             if (this.ModelState.IsValid)
             {
-                this.db.Entry(shopcategory).State = EntityState.Modified;
-                this.db.Entry(shopcategory.ParentCategory).State = EntityState.Modified;
+                var origShopCategory = this.db.ShopCategories.Single(c => c.CategoryId == shopcategory.CategoryId);
+
+                origShopCategory.Name = shopcategory.Name;
+                origShopCategory.Description = shopcategory.Description;
+
+                int parentCategoryId;
+                origShopCategory.ParentCategory = int.TryParse(fc["NewParentCategoryId"], out parentCategoryId)
+                                                  ? this.db.ShopCategories.Find(parentCategoryId)
+                                                  : null;
+
+                ////this.db.Entry(shopcategory).State = EntityState.Modified;
                 this.db.SaveChanges();
+
                 return this.RedirectToAction("Index");
+                ////this.ViewBag.CategorySelectList = this.GetCategorySelectList(origShopCategory);
+                ////return this.View(origShopCategory);
             }
 
-            this.ViewBag.CategorySelectList = new SelectList(this.db.ShopCategories, "CategoryId", "Name", shopcategory.GetParentCategoryId());
+            this.ViewBag.CategorySelectList = this.GetCategorySelectList(shopcategory);
             return this.View(shopcategory);
         }
 
@@ -129,6 +131,11 @@
         {
             this.db.Dispose();
             base.Dispose(disposing);
+        }
+
+        private SelectList GetCategorySelectList(ShopCategory category)
+        {
+            return new SelectList(this.db.ShopCategories, "CategoryId", "Name", category.GetParentCategoryId());
         }
     }
 }
