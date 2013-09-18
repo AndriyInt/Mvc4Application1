@@ -1,7 +1,7 @@
 ﻿@model Andriy.Mvc4Application1.Models.ShopCategory
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Category";
 }
 
 <h2>Edit</h2>
@@ -29,6 +29,14 @@
         <div class="editor-field">
             @Html.TextAreaFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParentCategory)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("NewParentCategoryId", (IEnumerable<SelectListItem>)ViewBag.CategorySelectList, string.Empty)
+            @*@Html.ValidationMessageFor(model => model.GetParentCategoryId())*@
         </div>
 
         <p>

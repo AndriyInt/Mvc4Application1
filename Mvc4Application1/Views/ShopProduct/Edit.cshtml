@@ -75,12 +75,14 @@
     </fieldset>
 }
 
+@Html.DropDownList("CategoriesSelectTemplate")
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/jquery.fix-validate.js"></script>
-    <script src="~/Scripts/productEdit.categoriesSelect.js"></script>
+    @Scripts.Render("~/bundles/jqueryfixval")
+    @Scripts.Render("~/bundles/product-edit-categories-select")
 }

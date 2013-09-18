@@ -66,6 +66,7 @@
             {
                 return this.HttpNotFound();
             }
+            this.ViewBag.CategorySelectList = new SelectList(this.db.ShopCategories, "CategoryId", "Name", shopcategory.GetParentCategoryId());
             return this.View(shopcategory);
         }
 
@@ -74,14 +75,27 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ShopCategory shopcategory)
+        public ActionResult Edit(FormCollection fc, ShopCategory shopcategory)
         {
+            int parentCategoryId;
+            if (int.TryParse(fc["NewParentCategoryId"], out parentCategoryId))
+            {
+                shopcategory.ParentCategory = this.db.ShopCategories.Find(parentCategoryId);
+            }
+            else
+            {
+                shopcategory.ParentCategory = null;
+            }
+
             if (this.ModelState.IsValid)
             {
                 this.db.Entry(shopcategory).State = EntityState.Modified;
+                this.db.Entry(shopcategory.ParentCategory).State = EntityState.Modified;
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
+
+            this.ViewBag.CategorySelectList = new SelectList(this.db.ShopCategories, "CategoryId", "Name", shopcategory.GetParentCategoryId());
             return this.View(shopcategory);
         }
 

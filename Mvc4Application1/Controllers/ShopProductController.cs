@@ -66,6 +66,7 @@
             {
                 return this.HttpNotFound();
             }
+            this.ViewBag.CategoriesSelectTemplate = new SelectList(this.db.ShopCategories, "CategoryId", "Name");
             return this.View(shopproduct);
         }
 

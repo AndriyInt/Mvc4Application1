@@ -21,6 +21,44 @@
         [Display(Name = "Parent Category")]
         public virtual ShopCategory ParentCategory { get; set; }
 
+        //public int? ParentCategoryId
+        //{
+        //    get
+        //    {
+        //        if (ParentCategory != null)
+        //        {
+        //            return ParentCategory.CategoryId;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //}
+
+        public int? GetParentCategoryId()
+        {
+            if (ParentCategory != null)
+            {
+                return ParentCategory.CategoryId;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [Display(Name = "Parent Category")]
+        public string DisplayParentCategoryPath
+        {
+            get
+            {
+                return this.ParentCategory == null
+                           ? "<None>"
+                           : this.ParentCategory.Path;
+            }
+        }
+
         public string Path
         {
             get
