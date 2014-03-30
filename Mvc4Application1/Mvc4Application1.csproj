@@ -196,6 +196,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\ToDoArea\App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\ToDoArea\Controllers\AccountController.cs" />
+    <Compile Include="Areas\ToDoArea\Controllers\HomeController.cs" />
+    <Compile Include="Areas\ToDoArea\Controllers\TodoController.cs" />
+    <Compile Include="Areas\ToDoArea\Controllers\TodoListController.cs" />
+    <Compile Include="Areas\ToDoArea\Filters\ValidateHttpAntiForgeryTokenAttribute.cs" />
+    <Compile Include="Areas\ToDoArea\Models\TodoItem.cs" />
+    <Compile Include="Areas\ToDoArea\Models\TodoItemDto.cs" />
+    <Compile Include="Areas\ToDoArea\Models\TodoList.cs" />
+    <Compile Include="Areas\ToDoArea\Models\TodoListDto.cs" />
+    <Compile Include="Areas\ToDoArea\ToDoAreaAreaRegistration.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -283,6 +294,10 @@
     <Compile Include="Migrations\201309142106349_ParentCategory2.Designer.cs">
       <DependentUpon>201309142106349_ParentCategory2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201403301415170_ToDoArea.cs" />
+    <Compile Include="Migrations\201403301415170_ToDoArea.Designer.cs">
+      <DependentUpon>201403301415170_ToDoArea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DirectoryListing.cs" />
@@ -303,6 +318,13 @@
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Areas\ToDoArea\Content\Site.css" />
+    <Content Include="Areas\ToDoArea\Content\TodoList.css" />
+    <Content Include="Areas\ToDoArea\Scripts\app\ajaxlogin.js" />
+    <Content Include="Areas\ToDoArea\Scripts\app\todo.bindings.js" />
+    <Content Include="Areas\ToDoArea\Scripts\app\todo.datacontext.js" />
+    <Content Include="Areas\ToDoArea\Scripts\app\todo.model.js" />
+    <Content Include="Areas\ToDoArea\Scripts\app\todo.viewmodel.js" />
     <Content Include="Content\Other.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -404,6 +426,21 @@
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Web.config" />
+    <Content Include="Areas\ToDoArea\Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Account\Manage.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Home\Index.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Home\_Login.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Home\_Register.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\Shared\_UserSettings.cshtml" />
+    <Content Include="Areas\ToDoArea\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\mvc4app1FileSystem.pubxml" />
     <Content Include="Images\Products\microsoft_keyboard_nek4000_large.jpg" />
     <Content Include="Images\Products\NoImage.jpg" />
@@ -919,6 +956,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309142106349_ParentCategory2.resx">
       <DependentUpon>201309142106349_ParentCategory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403301415170_ToDoArea.resx">
+      <DependentUpon>201403301415170_ToDoArea.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

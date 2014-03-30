@@ -8,6 +8,9 @@
         public DbSet<ShopCategory> ShopCategories { get; set; }
         public DbSet<ShopProduct> ShopProducts { get; set; }
 
+        public DbSet<Areas.ToDoArea.Models.TodoItem> TodoItems { get; set; }
+        public DbSet<Areas.ToDoArea.Models.TodoList> TodoLists { get; set; }
+
         ////public MovieDBContext()
         ////    : base("BloggingDatabase") // Creates file with specified name (LocalDB)
         ////{

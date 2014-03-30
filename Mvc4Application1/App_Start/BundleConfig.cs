@@ -49,6 +49,20 @@
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            // For To-Do Area (withoput hyphen)
+            bundles.Add(new ScriptBundle("~/bundles/todo/ajaxlogin").Include(
+                "~/Areas/ToDoArea/Scripts/app/ajaxlogin.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/todo").Include(
+                "~/Areas/ToDoArea/Scripts/app/todo.bindings.js",
+                "~/Areas/ToDoArea/Scripts/app/todo.datacontext.js",
+                "~/Areas/ToDoArea/Scripts/app/todo.model.js",
+                "~/Areas/ToDoArea/Scripts/app/todo.viewmodel.js"));
+
+            bundles.Add(new StyleBundle("~/Areas/ToDoArea/Content/css").Include(
+                "~/Areas/ToDoArea/Content/Site.css",
+                "~/Areas/ToDoArea/Content/TodoList.css"));
         }
     }
 }
