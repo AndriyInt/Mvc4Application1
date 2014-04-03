@@ -22,17 +22,25 @@
                     <section id="language">
                         @Html.Partial("_LanguagePartial")
                     </section>
-                    <nav>
+                    <nav class="main-menu">
                         <ul>
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@*@Html.ActionLink("Contact", "Contact", "Home")*@</li>
-                            <li>@Html.ActionLink("From Developers", "FromDevs", "Home")</li>
+                            
                             
                             <li>@Html.ActionLink("Movies", "Index", "Movie")</li>
-                            <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
-                            <li>@Html.ActionLink("HelloWorld", "Index", "HelloWorld")</li>
-                            <li>@Html.ActionLink("Other", "Other", "Home")</li>
+                            <li>@Html.ActionLink("Shop", "Index", "Shop")
+                                <ul>
+                                    <li>@Html.ActionLink("Categories", "Index", "ShopCategory")</li>
+                                    <li>@Html.ActionLink("Products", "Index", "ShopProduct")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Other", "Other", "Home")
+                                <ul>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("From Developers", "FromDevs", "Home")</li>
+                                    <li>@Html.ActionLink("HelloWorld", "Index", "HelloWorld")</li>
+                            </ul>
+                            </li>
                             
                             <li><a href="#">Areas</a>
                                 <ul>
@@ -41,7 +49,7 @@
                                     <li>@Html.ActionLink("Help(API) area", "Index", "Help", new { Area = "HelpPage" }, new{})</li>
                                 </ul>
                             </li>
-                            
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
                         </ul>
                     </nav>
                 </div>
