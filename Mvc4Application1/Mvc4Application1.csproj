@@ -278,10 +278,6 @@
     <Compile Include="Migrations\201305021947530_AddDataAnnotations.Designer.cs">
       <DependentUpon>201305021947530_AddDataAnnotations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201307071746076_ShopProductCategory.cs" />
-    <Compile Include="Migrations\201307071746076_ShopProductCategory.Designer.cs">
-      <DependentUpon>201307071746076_ShopProductCategory.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201307071825201_ShopProductCategory2.cs" />
     <Compile Include="Migrations\201307071825201_ShopProductCategory2.Designer.cs">
       <DependentUpon>201307071825201_ShopProductCategory2.cs</DependentUpon>
@@ -289,10 +285,6 @@
     <Compile Include="Migrations\201309142104582_ParentCategory.cs" />
     <Compile Include="Migrations\201309142104582_ParentCategory.Designer.cs">
       <DependentUpon>201309142104582_ParentCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201309142106349_ParentCategory2.cs" />
-    <Compile Include="Migrations\201309142106349_ParentCategory2.Designer.cs">
-      <DependentUpon>201309142106349_ParentCategory2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201403301415170_ToDoArea.cs" />
     <Compile Include="Migrations\201403301415170_ToDoArea.Designer.cs">
@@ -945,17 +937,11 @@
     <EmbeddedResource Include="Migrations\201305021947530_AddDataAnnotations.resx">
       <DependentUpon>201305021947530_AddDataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201307071746076_ShopProductCategory.resx">
-      <DependentUpon>201307071746076_ShopProductCategory.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307071825201_ShopProductCategory2.resx">
       <DependentUpon>201307071825201_ShopProductCategory2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309142104582_ParentCategory.resx">
       <DependentUpon>201309142104582_ParentCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201309142106349_ParentCategory2.resx">
-      <DependentUpon>201309142106349_ParentCategory2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201403301415170_ToDoArea.resx">
       <DependentUpon>201403301415170_ToDoArea.cs</DependentUpon>
