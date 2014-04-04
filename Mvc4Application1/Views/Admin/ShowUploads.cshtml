@@ -1,10 +1,8 @@
 ﻿@model Andriy.Mvc4Application1.Models.DirectoryListing
 
 @{
-    ViewBag.Title = "Logs";
+    ViewBag.Title = "ShowUploads";
 }
-
-<h2>Logs</h2>
 
 @{ int idx = 1; }
 Path: @Model.Path
@@ -21,7 +19,7 @@ Path: @Model.Path
             @if (Model.ParentDirPath != null)
             {
                 <td></td>
-                <td>@Html.ActionLink(".. (Up)", "ShowLogs",  new {path = Model.ParentDirPath})</td>
+                <td>@Html.ActionLink(".. (Up)", "ShowUploads",  new {path = Model.ParentDirPath})</td>
                 <td></td>
             }
         
@@ -30,7 +28,7 @@ Path: @Model.Path
         {
             <tr>
                 <td>Dir</td>
-                <td>@Html.ActionLink(dirName, "ShowLogs", new { path = Model.FriendlyPath + dirName } )</td>
+                <td>@Html.ActionLink(dirName, "ShowUploads", new { path = Model.FriendlyPath + dirName } )</td>
                 <td></td>
             </tr>
         }
@@ -38,8 +36,8 @@ Path: @Model.Path
         {
             <tr>
                 <td></td>
-                <td>@Html.ActionLink(fileName, "ShowFile", new { virtualFilePath = string.Format("{0}/{1}", Model.VirtualPath, fileName)})</td>
-                <td>@Html.ActionLink("Download", "DownloadFile", new { virtualFilePath = string.Format("{0}/{1}", Model.VirtualPath, fileName)})</td>
+                <td>@Html.ActionLink(fileName, "ShowFile", new {virtualFilePath = string.Format("{0}/{1}", Model.VirtualPath, fileName)})</td>
+                <td>@Html.ActionLink("Download", "DownloadFile", new {virtualFilePath = string.Format("{0}/{1}", Model.VirtualPath, fileName)})</td>
             </tr>
         }
     </tbody>

@@ -54,6 +54,11 @@
                                 </ul>
                             </li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
+                            
+                            @if (Request.IsAuthenticated && User.IsInRole(Andriy.Mvc4Application1.Consts.AdminRoleName))
+                            {
+                                <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                            }
                         </ul>
                     </nav>
                 </div>

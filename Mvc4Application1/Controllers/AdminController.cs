@@ -9,9 +9,8 @@
 
     public class AdminController : Controller
     {
-        private const string LogDir = "~/Logs/";
-
-        [Authorize(Roles = "Admin, Super User")]
+        ////[Authorize(Roles = "Admin, Super User")]
+        [Authorize(Roles = Consts.AdminRoleName)]
         public ActionResult Index()
         {
             var informationalVersionAttribute =
@@ -21,11 +20,11 @@
             return this.View();
         }
 
-        [Authorize(Roles = "Admin, Super User")]
+        [Authorize(Roles = Consts.AdminRoleName)]
         public ActionResult ShowLogs(string path)
         {
-            //path = "elmah";
-            var fullPath = this.Server.MapPath(string.Format("{0}{1}/", LogDir, path));
+            ////path = "elmah";
+            var fullPath = this.Server.MapPath(string.Format("{0}/{1}/", Consts.LogDir, path));
             var fullPathLength = fullPath.Length;
 
             string parentDirPath = null;
@@ -40,24 +39,62 @@
 
             return this.View(new DirectoryListing
                                  {
+                                     Root = Consts.LogDir,
                                      Path = path,
                                      FriendlyPath = path != null ? path + "/" : string.Empty,
                                      ParentDirPath = parentDirPath,
                                      Subirectories = subdirs,
-                                     Files = files
+                                     Files = files,
+                                     VirtualPath = string.Format(
+                                         "{0}{1}{2}", 
+                                         Consts.LogDir, 
+                                         path != null ? "/" : string.Empty, 
+                                         path)
                                  });
+        }
+
+        [Authorize(Roles = Consts.AdminRoleName)]
+        public ActionResult ShowUploads(string path)
+        {
+            var fullPath = this.Server.MapPath(string.Format("{0}/{1}/", Consts.UploadPath, path));
+            var fullPathLength = fullPath.Length;
+
+            string parentDirPath = null;
+            if (path != null)
+            {
+                var slashIdx = path.LastIndexOf('/');
+                parentDirPath = slashIdx > -1 ? path.Substring(0, slashIdx) : string.Empty;
+            }
+
+            var subdirs = System.IO.Directory.EnumerateDirectories(fullPath).Select(fname => fname.Substring(fullPathLength));
+            var files = System.IO.Directory.EnumerateFiles(fullPath).Select(fname => fname.Substring(fullPathLength));
+
+            return this.View(new DirectoryListing
+            {
+                Root = Consts.UploadPath,
+                Path = path,
+                FriendlyPath = path != null ? path + "/" : string.Empty,
+                ParentDirPath = parentDirPath,
+                Subirectories = subdirs,
+                Files = files,
+                VirtualPath = string.Format(
+                    "{0}{1}{2}",
+                    Consts.UploadPath,
+                    path != null ? "/" : string.Empty,
+                    path)
+            });
         }
 
         /// <summary>
         /// Downloads file
         /// </summary>
-        /// <param name="relFname">relative to LogDir directory</param>
-        [Authorize(Roles = "Admin, Super User")]
-        public void DownloadFile(string relFname)
+        /// <param name="virtualFilePath">Virtual path</param>
+        [Authorize(Roles = Consts.AdminRoleName)]
+        public void DownloadFile(string virtualFilePath)
         {
             ////this.Response.WriteFile(Server.MapPath("~/Logs/2013.09.07.log.resources"));
-
-            var fullFilePath = this.Server.MapPath(string.Format("{0}/{1}", LogDir, relFname));
+            var fullFilePath = this.Server.MapPath(virtualFilePath);
+            ////var fullFilePath = this.Server.MapPath(string.Format("{0}/{1}", LogDir, relFname));
             var file = new System.IO.FileInfo(fullFilePath);
             
             this.Response.Clear();
@@ -71,6 +108,36 @@
 
             this.Response.TransmitFile(file.FullName);
 
+            this.Response.End();
+        }
+
+        /// <summary>
+        /// Show file in browser
+        /// </summary>
+        /// <param name="virtualFilePath">The virtual path in form ~/Folder/file.ext</param>
+        [Authorize(Roles = Consts.AdminRoleName)]
+        public void ShowFile(string virtualFilePath)
+        {
+            ////this.Response.WriteFile(Server.MapPath("~/Logs/2013.09.07.log.resources"));
+            string fullFilePath = this.Server.MapPath(virtualFilePath);
+            var file = new System.IO.FileInfo(fullFilePath);
+            string extension = file.Extension.Substring(1);
+            
+            if (Consts.ImageExtensions.Contains(extension))
+            {
+                this.Response.ContentType = "image/" + extension;
+            }
+            else if (Consts.PlainTextExtensions.Contains(extension))
+            {
+                this.Response.ContentType = "text/plain";
+            }
+            else
+            {
+                this.RedirectToAction("DownloadFile");
+                return;
+            }
+
+            this.Response.TransmitFile(file.FullName);
             this.Response.End();
         }
     }

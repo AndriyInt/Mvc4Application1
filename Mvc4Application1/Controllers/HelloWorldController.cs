@@ -121,5 +121,25 @@
         {
             return this.View();
         }
+
+        [HttpPost]
+        public ActionResult UploadTest(System.Web.HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                this.ViewBag.Message = "No file selected";
+                return this.View();
+            }
+
+            string uploadPath = Server.MapPath(Consts.UploadPath);
+            if (!System.IO.Directory.Exists(uploadPath))
+            {
+                System.IO.Directory.CreateDirectory(uploadPath);
+            }
+
+            file.SaveAs(string.Format("{0}\\{1}", uploadPath, file.FileName));
+            this.ViewBag.Message = "Upload OK";
+            return this.View();
+        }
     }
 }

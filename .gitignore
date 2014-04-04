@@ -108,3 +108,4 @@ Backup*/
 UpgradeLog*.XML
 /Mvc4Application1/App_Data
 /Mvc4Application1/Logs
+/Mvc4Application1/Uploads

@@ -4,3 +4,16 @@
 }
 
 <h2>UploadTest</h2>
+<h3>Select file to upload</h3>
+
+@using (Html.BeginForm("UploadTest", "HelloWorld", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="file" name="file" />
+    <input type="submit" value="Upload" />
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="has-feedback">@Html.Encode(ViewBag.Message)</div>
+}
