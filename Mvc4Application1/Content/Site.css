@@ -268,7 +268,7 @@ nav.main-menu {
 	    position: relative;
 	    display: inline-table;
 
-        font-size: 1.3em;
+        font-size: 17px;
         font-weight: 600;
         margin: 0 0 5px;
         padding: 0;
@@ -298,8 +298,7 @@ nav.main-menu {
 			
 		
 	nav.main-menu ul ul {
-	    font-size: 0.9em;
-		background: #e8eff7;
+	    background: #e8eff7;
         padding: 0;
 		position: absolute; 
         top: 100%;
