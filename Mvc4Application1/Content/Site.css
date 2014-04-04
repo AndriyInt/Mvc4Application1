@@ -264,7 +264,7 @@ nav.main-menu {
 	}
     
     nav.main-menu ul {
-	    list-style: none;
+        list-style: none;
 	    position: relative;
 	    display: inline-table;
 
@@ -274,7 +274,7 @@ nav.main-menu {
         padding: 0;
         text-align: right;
     }
-	    nav.main-menu ul:after {
+        nav.main-menu ul:after {
 		    content: ""; clear: both; display: block;
 	    }
 
@@ -298,13 +298,18 @@ nav.main-menu {
 			
 		
 	nav.main-menu ul ul {
-        font-size: 1em;
+	    font-size: 0.9em;
 		background: #e8eff7;
         padding: 0;
 		position: absolute; 
         top: 100%;
+	    -webkit-box-shadow: 0 0 9px #000000;
+	    -ms-box-shadow: 0 0 9px #000000;
+        box-shadow: 0 0 9px #000000;
+	    box-shadow: 0 0 9px rgba(0,0,0,0.15);
 	}
-		nav.main-menu ul ul li {
+
+        nav.main-menu ul ul li {
 			float: none; position: relative;
 		}
 			nav.main-menu ul ul li a {
