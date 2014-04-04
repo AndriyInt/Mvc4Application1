@@ -317,7 +317,12 @@
     <Content Include="Areas\ToDoArea\Scripts\app\todo.datacontext.js" />
     <Content Include="Areas\ToDoArea\Scripts\app\todo.model.js" />
     <Content Include="Areas\ToDoArea\Scripts\app\todo.viewmodel.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Other.css" />
+    <Content Include="Content\Site2.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -433,10 +438,14 @@
     <Content Include="Areas\ToDoArea\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\ToDoArea\Views\Shared\_UserSettings.cshtml" />
     <Content Include="Areas\ToDoArea\Views\_ViewStart.cshtml" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\mvc4app1FileSystem.pubxml" />
     <Content Include="Images\Products\microsoft_keyboard_nek4000_large.jpg" />
     <Content Include="Images\Products\NoImage.jpg" />
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\image-popup.js" />
     <Content Include="Scripts\jquery-2.0.2.js" />
     <Content Include="Scripts\jquery-2.0.2.min.js" />
@@ -902,6 +911,9 @@
     <Content Include="Views\ShopProduct\Edit.cshtml" />
     <Content Include="Views\ShopProduct\Delete.cshtml" />
     <Content Include="Views\Culture\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\HelloWorld\UploadTest.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

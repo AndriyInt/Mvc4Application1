@@ -34,7 +34,15 @@
             bundles.Add(new ScriptBundle("~/bundles/image-popup").Include(
                         "~/Scripts/image-popup.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css2").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/Site2.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

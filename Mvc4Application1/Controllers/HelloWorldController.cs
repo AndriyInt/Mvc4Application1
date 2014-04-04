@@ -116,5 +116,10 @@
                 return "ShopCategoryTest complete";
             }
         }
+
+        public ActionResult UploadTest()
+        {
+            return this.View();
+        }
     }
 }
