@@ -141,5 +141,10 @@
             this.ViewBag.Message = "Upload OK";
             return this.View();
         }
+
+        public ActionResult TreeView()
+        {
+            return this.View();
+        }
     }
 }

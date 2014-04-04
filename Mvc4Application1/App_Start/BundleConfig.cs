@@ -34,16 +34,24 @@
             bundles.Add(new ScriptBundle("~/bundles/image-popup").Include(
                         "~/Scripts/image-popup.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/aciTreeCheckbox").Include(
+                        ////"~/Scripts/aciTree/jquery.aciPlugin.min.js", // TODO: check whu is not loaded
+                        "~/Scripts/aciTree/jquery.aciTree.dom.js",
+                        "~/Scripts/aciTree/jquery.aciTree.core.js",
+                        "~/Scripts/aciTree/jquery.aciTree.selectable.js",
+                        "~/Scripts/aciTree/jquery.aciTree.checkbox.js",
+                        "~/Scripts/aciTree/jquery.aciTree.radio.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css"));
-
             bundles.Add(new StyleBundle("~/Content/css2").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site2.css"));
 
+            bundles.Add(new StyleBundle("~/Content/aciTree").Include("~/Content/aciTree/aciTree.css"));
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",

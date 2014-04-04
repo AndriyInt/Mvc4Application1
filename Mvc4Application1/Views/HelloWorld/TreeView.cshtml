@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "TreeView";
+}
+ @Styles.Render("~/Content/aciTree")
+
+<h2>TreeView</h2>
+
+<div id="tree" class="aciTree">
+    <div>
+        The easy way to find a car that's right for you
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/aciTree/jquery.aciPlugin.min.js")
+    @Scripts.Render("~/bundles/aciTreeCheckbox")
+
+    <script>
+        (function () {
+            $('#tree').aciTree({
+                ajax: {
+                    url: '/api/HelloWorldAPI/GetTreeNodesCheckbox'
+                },
+                checkbox: true
+            });
+        })(jQuery);
+    </script>
+    
+}
