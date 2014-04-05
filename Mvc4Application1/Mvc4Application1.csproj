@@ -464,7 +464,6 @@
     <None Include="Properties\PublishProfiles\mvc4app1FileSystem.pubxml" />
     <Content Include="Images\Products\microsoft_keyboard_nek4000_large.jpg" />
     <Content Include="Images\Products\NoImage.jpg" />
-    <None Include="Scripts\jquery-2.0.2.intellisense.js" />
     <Content Include="Scripts\aciTree\jquery.aciFragment.min.js" />
     <Content Include="Scripts\aciTree\jquery.aciPlugin.min.js" />
     <Content Include="Scripts\aciTree\jquery.aciSortable.min.js" />
@@ -485,8 +484,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\image-popup.js" />
-    <Content Include="Scripts\jquery-2.0.2.js" />
-    <Content Include="Scripts\jquery-2.0.2.min.js" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery.globalize\cultures\globalize.culture.af-ZA.js" />
@@ -843,10 +843,10 @@
     <Content Include="Scripts\jquery.globalize\cultures\globalize.culture.zu.js" />
     <Content Include="Scripts\jquery.globalize\cultures\globalize.cultures.js" />
     <Content Include="Scripts\jquery.globalize\globalize.js" />
-    <Content Include="Scripts\jquery-2.0.2.min.map" />
     <Content Include="Scripts\jquery.fix-validate.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
