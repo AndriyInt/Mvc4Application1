@@ -15,8 +15,6 @@
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-
             context.MapRoute(
                 "ToDoArea_default",
                 "ToDoArea/{controller}/{action}/{id}",

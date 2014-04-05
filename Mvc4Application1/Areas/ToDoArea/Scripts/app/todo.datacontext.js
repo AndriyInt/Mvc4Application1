@@ -103,7 +103,7 @@ window.todoApp.datacontext = (function () {
         return $.ajax(url, options);
     }
     // routes
-    function todoListUrl(id) { return "/ToDoArea/api/todolist/" + (id || ""); }
-    function todoItemUrl(id) { return "/ToDoArea/api/todo/" + (id || ""); }
+    function todoListUrl(id) { return "/api/todolist/" + (id || ""); }
+    function todoItemUrl(id) { return "/api/todo/" + (id || ""); }
 
 })();
