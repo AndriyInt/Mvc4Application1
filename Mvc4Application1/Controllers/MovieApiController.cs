@@ -14,8 +14,11 @@
     public class MovieApiController : ApiController
     {
         private MovieDBContext db = new MovieDBContext();
-
-        // GET api/MovieApi
+                
+        /// <summary>
+        /// Gets available movie list
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Movie> GetMovies()
         {
             return this.db.Movies.AsEnumerable();
