@@ -469,6 +469,7 @@
     <Content Include="Images\Products\microsoft_keyboard_nek4000_large.jpg" />
     <Content Include="Images\Products\NoImage.jpg" />
     <Content Include="Scripts\aciTree\jquery.aciFragment.min.js" />
+    <Content Include="Scripts\aciTree\jquery.aciPlugin.js" />
     <Content Include="Scripts\aciTree\jquery.aciPlugin.min.js" />
     <Content Include="Scripts\aciTree\jquery.aciSortable.min.js" />
     <Content Include="Scripts\aciTree\jquery.aciTree.checkbox.js" />

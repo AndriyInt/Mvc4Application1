@@ -35,7 +35,7 @@
                         "~/Scripts/image-popup.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/aciTreeCheckbox").Include(
-                        ////"~/Scripts/aciTree/jquery.aciPlugin.min.js", // TODO: check whu is not loaded
+                        "~/Scripts/aciTree/jquery.aciPlugin.js",
                         "~/Scripts/aciTree/jquery.aciTree.dom.js",
                         "~/Scripts/aciTree/jquery.aciTree.core.js",
                         "~/Scripts/aciTree/jquery.aciTree.selectable.js",
