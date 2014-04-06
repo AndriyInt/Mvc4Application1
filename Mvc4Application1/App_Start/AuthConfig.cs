@@ -1,4 +1,4 @@
-﻿namespace Andriy.Mvc4Application1.App_Start
+﻿namespace Andriy.Mvc4Application1
 {
     using Microsoft.Web.WebPages.OAuth;
 
@@ -8,20 +8,19 @@
         {
             // To let users of this site log in using their accounts from other sites such as Microsoft, Facebook, and Twitter,
             // you must update this site. For more information visit http://go.microsoft.com/fwlink/?LinkID=252166
-
             OAuthWebSecurity.RegisterLinkedInClient("rcurz62d0edf", "LatcvQN3a1FGSq33");
 
-            //OAuthWebSecurity.RegisterMicrosoftClient(
-            //    clientId: "",
-            //    clientSecret: "");
+            ////OAuthWebSecurity.RegisterMicrosoftClient(
+            ////    clientId: "",
+            ////    clientSecret: "");
 
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            ////OAuthWebSecurity.RegisterTwitterClient(
+            ////    consumerKey: "",
+            ////    consumerSecret: "");
 
-            //OAuthWebSecurity.RegisterFacebookClient(
-            //    appId: "",
-            //    appSecret: "");
+            ////OAuthWebSecurity.RegisterFacebookClient(
+            ////    appId: "",
+            ////    appSecret: "");
 
             OAuthWebSecurity.RegisterGoogleClient();
         }

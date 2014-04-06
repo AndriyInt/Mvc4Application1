@@ -1,6 +1,5 @@
-﻿namespace Andriy.Mvc4Application1.App_Start
+﻿namespace Andriy.Mvc4Application1
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;

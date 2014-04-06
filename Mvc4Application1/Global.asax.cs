@@ -6,8 +6,6 @@
     using System.Web.Optimization;
     using System.Web.Routing;
 
-    using Andriy.Mvc4Application1.App_Start;
-
     using log4net;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 

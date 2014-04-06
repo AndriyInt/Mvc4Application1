@@ -1,4 +1,4 @@
-﻿namespace Andriy.Mvc4Application1.App_Start
+﻿namespace Andriy.Mvc4Application1
 {
     using System.Web.Mvc;
 
