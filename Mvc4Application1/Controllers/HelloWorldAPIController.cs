@@ -11,6 +11,7 @@
 
     public class HelloWorldAPIController : ApiController
     {
+        [Route("api/HelloWorldAPI/GetTreeNodesCheckbox")]
         public object GetTreeNodesCheckbox()
         {
             string jsonFilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/Content/aciTree/checkbox.json");
@@ -23,6 +24,12 @@
             string jsonFileContents = File.ReadAllText(jsonFilePath);
             object jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContents);
             return jsonObject;
+        }
+
+        [Route("api/HelloWorldAPI/GetTheObject")]
+        public dynamic GetTheObject()
+        {
+            return new[] { new { id = 1 } };
         }
     }
 }
