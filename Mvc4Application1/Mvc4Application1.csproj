@@ -72,6 +72,13 @@
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -86,7 +93,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.19.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -150,9 +156,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -296,6 +299,10 @@
     <Compile Include="Migrations\201403301415170_ToDoArea.Designer.cs">
       <DependentUpon>201403301415170_ToDoArea.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404072150507_MigrationToEF6.1.cs" />
+    <Compile Include="Migrations\201404072150507_MigrationToEF6.1.Designer.cs">
+      <DependentUpon>201404072150507_MigrationToEF6.1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DirectoryListing.cs" />
@@ -424,18 +431,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SiteDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DAL\SiteDBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiteDBModel.edmx</DependentUpon>
-      <LastGenOutput>SiteDBModel.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="DAL\SiteDBModel.edmx.diagram">
       <DependentUpon>SiteDBModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DAL\SiteDBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiteDBModel.edmx</DependentUpon>
-      <LastGenOutput>SiteDBModel.cs</LastGenOutput>
     </Content>
     <Content Include="log4net.config" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
@@ -471,6 +468,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="DAL\SiteDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SiteDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>SiteDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DAL\SiteDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SiteDBModel.cs</LastGenOutput>
+      <DependentUpon>SiteDBModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\mvc4app1FileSystem.pubxml" />
     <Content Include="Images\Products\microsoft_keyboard_nek4000_large.jpg" />
     <Content Include="Images\Products\NoImage.jpg" />
@@ -1008,6 +1015,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201403301415170_ToDoArea.resx">
       <DependentUpon>201403301415170_ToDoArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404072150507_MigrationToEF6.1.resx">
+      <DependentUpon>201404072150507_MigrationToEF6.1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

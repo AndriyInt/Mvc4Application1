@@ -1,6 +1,6 @@
 ﻿namespace Andriy.Mvc4Application1.Controllers
 {
-    using System.Data;
+    using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
 

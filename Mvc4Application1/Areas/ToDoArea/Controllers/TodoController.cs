@@ -1,7 +1,7 @@
 ﻿namespace Andriy.Mvc4Application1.Areas.ToDoArea.Controllers
 {
     using System;
-    using System.Data;
+    using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Net;
     using System.Net.Http;

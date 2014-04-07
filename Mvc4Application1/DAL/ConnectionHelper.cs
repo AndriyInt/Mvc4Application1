@@ -13,7 +13,7 @@
         {
             var siteSqlConn = System.Configuration.ConfigurationManager.ConnectionStrings[sqlConnStr];
             string conStrIntegratedSecurity =
-                new System.Data.EntityClient.EntityConnectionStringBuilder
+                new System.Data.Entity.Core.EntityClient.EntityConnectionStringBuilder
                 {
                     Metadata = "res://*/DAL.SiteDBModel.csdl|res://*/DAL.SiteDBModel.ssdl|res://*/DAL.SiteDBModel.msl",
                     Provider = siteSqlConn.ProviderName,
