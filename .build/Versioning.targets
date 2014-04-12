@@ -36,7 +36,7 @@
       <Output TaskParameter="CommitHash" PropertyName="Revision" />
     </GitVersion>
     <FileUpdate Files="Properties\AssemblyInfo.cs"
-          Regex="(AssemblyInformationalVersion\(&quot;\d+)\.(\d+)\.(\d+)\.(\d+)"
+          Regex="(AssemblyInformationalVersion\(&quot;\d+)\.(\d+)\.(\d+)\.(\w+)"
           ReplacementText="$1.$2.$3.$(Revision)" />
   </Target>
 
