@@ -51,7 +51,7 @@
                       "~/Content/bootstrap.css",
                       "~/Content/Site2.css"));
 
-            bundles.Add(new StyleBundle("~/Content/aciTree").Include("~/Content/aciTree/aciTree.css"));
+            bundles.Add(new StyleBundle("~/Content/aciTree/css").Include("~/Content/aciTree/aciTree.css"));
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
