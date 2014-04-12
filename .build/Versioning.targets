@@ -4,35 +4,15 @@
   <PropertyGroup>
     <MSBuildCommunityTasksPath Condition="'$(MSBuildCommunityTasksPath)' == ''">$(MSBuildProjectDirectory)\..\.build</MSBuildCommunityTasksPath>
     <BuildDependsOn Condition="'$(Configuration)' == 'Release'">UpdateAssemblyInfo;$(BuildDependsOn);</BuildDependsOn>
-	</PropertyGroup>
+  </PropertyGroup>
   
   <Import Project="..\.build\MSBuild.Community.Tasks.Targets" />
 
-  <!--<Target Name="BeforeBuild">
-    <CallTarget Targets="UpdateAssemblyInfo" />
-  </Target>-->
-
-  <!--<Target Name="CreateAssemblyInfo">
-    <GitVersion LocalPath="$(MSBuildProjectDirectory)">
-      <Output TaskParameter="CommitHash" PropertyName="Revision" />
-    </GitVersion>
-    <AssemblyInfo
-        CodeLanguage="CS"
-        OutputFile="Properties\AssemblyInfo.cs"
-        AssemblyTitle="YourAssmblyName"
-        AssemblyDescription="Description"
-        AssemblyCompany=""
-        AssemblyProduct="Productname"
-        AssemblyCopyright="Copyright"
-        ComVisible="false"
-        CLSCompliant="true"
-        AssemblyInformationalVersion="$(Major).$(Minor).$(Build).$(Revision)"
-        AssemblyVersion="$(Major).$(Minor).$(Build)"
-        AssemblyFileVersion="$(Major).$(Minor).$(Build)" />
-  </Target>-->
-
   <Target Name="UpdateAssemblyInfo">
-    <GitVersion LocalPath="$(MSBuildProjectDirectory)">
+    <PropertyGroup>
+      <Revision Condition="'$(Revision)' == '' And '$(BUILD_NUMBER)' != ''">$(BUILD_NUMBER)</Revision>
+    </PropertyGroup>
+    <GitVersion LocalPath="$(MSBuildProjectDirectory)" Condition=" '$(Revision)' == '' ">
       <Output TaskParameter="CommitHash" PropertyName="Revision" />
     </GitVersion>
     <FileUpdate Files="Properties\AssemblyInfo.cs"
