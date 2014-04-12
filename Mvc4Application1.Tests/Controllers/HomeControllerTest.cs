@@ -4,12 +4,12 @@
 
     using Andriy.Mvc4Application1.Controllers;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
             // Arrange
@@ -25,7 +25,7 @@
             Assert.AreEqual("Welcome!", result.ViewBag.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void About()
         {
             // Arrange
@@ -38,7 +38,7 @@
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Contact()
         {
             // Arrange
