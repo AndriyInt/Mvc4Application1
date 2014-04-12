@@ -30,7 +30,11 @@
                             <li>@Html.ActionLink("Movies", "Index", "Movie")</li>
                             <li>@Html.ActionLink("Shop", "Index", "Shop")
                                 <ul>
-                                    <li>@Html.ActionLink("Categories", "Index", "ShopCategory")</li>
+                                    <li>@Html.ActionLink("Categories", "Index", "ShopCategory")
+                                        <ul>
+                                            <li>@Html.ActionLink("Tree", "Index2", "ShopCategory")</li>
+                                        </ul>
+                                    </li>
                                     <li>@Html.ActionLink("Products", "Index", "ShopProduct")</li>
                                 </ul>
                             </li>
@@ -38,6 +42,13 @@
                                 <ul>
                                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                     <li>@Html.ActionLink("From Developers", "FromDevs", "Home")</li>
+                                    
+                                    <li><a href="#">Old Shop</a>
+                                        <ul>
+                                            <li>@Html.ActionLink("Categories (old)", "Index", "Categories")</li>
+                                            <li>@Html.ActionLink("Products (old)", "Index", "Products")</li>
+                                        </ul>
+                                    </li>
                                     <li>@Html.ActionLink("HelloWorld", "Index", "HelloWorld")
                                         <ul>
                                             <li>@Html.ActionLink("UploadTest", "UploadTest", "HelloWorld")</li>

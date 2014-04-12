@@ -11,12 +11,15 @@
     {
         private MovieDBContext db = new MovieDBContext();
 
-        //
         // GET: /ShopCategory/
-
         public ActionResult Index()
         {
             return this.View(this.db.ShopCategories.ToList());
+        }
+
+        public ActionResult Index2()
+        {
+            return this.View();
         }
 
         //
@@ -156,11 +159,16 @@
 
         private SelectList GetCategorySelectList(ShopCategory category = null)
         {
+            var parentCategoryId = category == null
+                                       ? null
+                                       : (category.ParentCategory == null
+                                              ? null
+                                              : (int?)category.ParentCategory.CategoryId);
             return new SelectList(
                 this.db.ShopCategories, 
-                "CategoryId", 
-                "Name", 
-                category != null ? category.GetParentCategoryId() : null);
+                "CategoryId",
+                "Name",
+                parentCategoryId);
         }
     }
 }

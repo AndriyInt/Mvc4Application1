@@ -5,6 +5,8 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
+    using Newtonsoft.Json;
+
     public class ShopCategory
     {
         [Key]
@@ -15,29 +17,18 @@
         public string Name { get; set; }
 
         public string Description { get; set; }
-        
+
+        [JsonIgnore]
         public virtual ICollection<ShopCategory> Subcategories { get; set; }
-        
+
+        [JsonIgnore]
         [Display(Name = "Parent Category")]
-        //[ForeignKey("ParentCategoryId")]
         public virtual ShopCategory ParentCategory { get; set; }
 
-        //public int? ParentCategoryId { get; set; }
-
-        public int? GetParentCategoryId()
-        {
-            if (ParentCategory != null)
-            {
-                return ParentCategory.CategoryId;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
+        [JsonIgnore]
         [Display(Name = "Parent Category")]
-        public string DisplayParentCategoryPath
+        [NotMapped]
+        public string ParentCategoryPath
         {
             get
             {
@@ -47,7 +38,9 @@
             }
         }
 
+        [JsonIgnore]
         [Display(Name = "Full Path")]
+        [NotMapped]
         public string Path
         {
             get
@@ -62,6 +55,7 @@
             }
         }
 
+        [JsonIgnore]
         public virtual ICollection<ShopProduct> Products { get; set; }
     }
 }

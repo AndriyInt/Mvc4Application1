@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index2";
+}
+@Styles.Render("~/Content/aciTree")
+
+<div id="categories-tree" class="aciTree">
+    <div>
+        Categories
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/aciTreeCheckbox")
+
+    <script>
+        (function ($) {
+            // On ready
+            $(function() {
+                var appRootUrl = '@Url.Content("~")';
+                $('#categories-tree').aciTree({
+                    ajax: {
+                        url: appRootUrl + 'api/ShopCategoryTreeApi/'
+                    }
+                });
+            });
+        })(jQuery);
+        
+    </script>
+    
+}
+
