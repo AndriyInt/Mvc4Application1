@@ -21,7 +21,7 @@
         ////[JsonProperty("checkbox")]
         ////public bool Checkbox { get; set; }
 
-        ////[JsonProperty("branch")]
-        ////public IEnumerable<AciTreeNode> Branch { get; set; }
+        [JsonProperty("branch")]
+        public IEnumerable<AciTreeNode> Branch { get; set; }
     }
 }

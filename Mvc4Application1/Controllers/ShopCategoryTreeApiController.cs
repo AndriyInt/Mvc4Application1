@@ -18,8 +18,7 @@
         
         /// <summary>
         /// Returns root categories for aciTree jquery plugin
-        /// 
-        /// Sample request: GET api/shopcategorytreeapi
+        /// Sample request: GET api/ShopCategoryTreeApi
         /// </summary>
         /// <returns></returns>
         public IQueryable<AciTreeNode> Get()
@@ -34,7 +33,7 @@
                                });
         }
 
-        // GET api/shopcategorytreeapi/5
+        // GET api/ShopCategoryTreeApi/5
         public IEnumerable<AciTreeNode> Get(int id)
         {
             var shopcategory = this.db.ShopCategories.Find(id);
@@ -52,6 +51,12 @@
                                });
         }
 
+        [Route("api/ShopCategoryTreeApi/GetFull")]
+        public IEnumerable<AciTreeNode> GetFull()
+        {
+            return ToTreeNodesRek(this.db.ShopCategories.Where(cat => cat.ParentCategory == null));
+        }
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -60,6 +65,22 @@
             }
 
             base.Dispose(disposing);
+        }
+
+        private static IEnumerable<AciTreeNode> ToTreeNodesRek(IEnumerable<ShopCategory> categories)
+        {
+            if (categories == null)
+            {
+                return null;
+            }
+
+            return categories.ToList().Select(cat => new AciTreeNode
+            {
+                Id = string.Empty + cat.CategoryId,
+                Label = cat.Name,
+                Inode = cat.Subcategories.Any(),
+                Branch = ToTreeNodesRek(cat.Subcategories)
+            });
         }
     }
 }
