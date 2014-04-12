@@ -2,7 +2,10 @@
 @{
     ViewBag.Title = "Index2";
 }
-@Styles.Render("~/Content/aciTree")
+
+@section head {
+    @Styles.Render("~/Content/aciTree")
+}
 
 <div id="categories-tree" class="aciTree">
     <div>
